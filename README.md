@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Symphony Bali Spa
+
+Production-quality Next.js website for Symphony Bali Spa — a luxury Balinese-inspired
+wellness brand with locations in Madurai and Theni.
+
+## Stack
+
+- Next.js 16 (App Router, TypeScript, Turbopack)
+- Tailwind CSS v4 (CSS-first `@theme` design tokens)
+- No UI/animation libraries — custom components, CSS transitions, and a small
+  IntersectionObserver-based scroll-reveal utility
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build   # production build
+npm run start   # run the production build
+npm run lint    # ESLint
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+  app/                Routes (App Router) — one folder per page, plus
+                       sitemap.ts, robots.ts, not-found.tsx
+  components/          Reusable UI components (Header, Hero, TreatmentCard, ...)
+  data/                Content as structured data (treatments, locations,
+                       testimonials, FAQs, journal posts, site-wide constants)
+  lib/                 Small helpers (cn(), the image lookup table)
+```
 
-To learn more about Next.js, take a look at the following resources:
+Business content (services, addresses, phone numbers, testimonials) lives in
+`src/data/*.ts` — update it there rather than in the page files.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Replacing Placeholder Photography
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All imagery is centralised in `src/lib/images.ts` as a lookup table of curated
+Unsplash photos, used as stand-ins for real Symphony Bali Spa photography.
+To swap in licensed/owned photos:
 
-## Deploy on Vercel
+1. Add the new image URL (or a local file under `public/`) to `src/lib/images.ts`.
+2. Every component/page references images by key (e.g. `img.hotStoneMassage`),
+   so no other files need to change.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Note: on a cold cache, Next's built-in image optimizer can take a few seconds
+to fetch and transform a hot-linked Unsplash image the first time it's
+requested at a given size. This is a one-time cost per size/image (cached
+afterwards) and is specific to hot-linking a remote source — self-hosted
+production images won't have this delay.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## SEO
+
+- Per-page metadata via the `Metadata` API (`src/app/**/page.tsx`)
+- `sitemap.ts` / `robots.ts` generate `/sitemap.xml` and `/robots.txt`
+- `Organization`/`DaySpa` JSON-LD in the root layout (`src/components/JsonLd.tsx`)
+
+## Content Accuracy
+
+Business details (services, addresses, phone numbers, hours, testimonials)
+were sourced from the existing symphonybalispa.com site. Anything not
+publicly available (exact treatment durations, specific figures) uses
+reasonable, clearly-generic placeholders rather than invented claims —
+review `src/data/` before launch.
