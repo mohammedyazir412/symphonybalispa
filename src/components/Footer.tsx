@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
-import { site, locationsContact, primaryWhatsapp } from "@/data/site";
+import { site, locationsContact } from "@/data/site";
 import { navLinks } from "@/data/navigation";
 import {
   IconInstagram,
   IconFacebook,
-  IconWhatsapp,
   IconPhone,
   IconMail,
 } from "@/components/icons";
+import WhatsAppPicker from "@/components/WhatsAppPicker";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -35,15 +35,7 @@ export default function Footer() {
             Discover Symphony.
           </p>
           <div className="mt-6 flex items-center gap-3">
-            <a
-              href={primaryWhatsapp}
-              target="_blank"
-              rel="noreferrer"
-              aria-label="WhatsApp"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-ivory/15 text-ivory/70 transition-colors hover:border-gold hover:text-gold"
-            >
-              <IconWhatsapp className="h-4 w-4" />
-            </a>
+            <WhatsAppPicker className="flex h-10 w-10 items-center justify-center rounded-full border border-ivory/15 text-ivory/70 transition-colors hover:border-gold hover:text-gold" />
             <a
               href={site.social.instagram}
               target="_blank"
