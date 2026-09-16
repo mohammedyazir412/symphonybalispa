@@ -21,7 +21,7 @@ export default function ContactPage() {
   return (
     <>
       <Hero
-        image="oilBottlePedestal"
+        image="heroContact"
         eyebrow="Get in Touch"
         heading={["WE'D LOVE TO", "HEAR FROM YOU."]}
         subtext="Questions about a treatment, group booking or gift voucher? Reach out — our team is happy to help."

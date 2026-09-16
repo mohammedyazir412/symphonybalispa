@@ -11,7 +11,6 @@ import { navLinks } from "@/data/navigation";
 
 export default function Header() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastPathname, setLastPathname] = useState(pathname);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
@@ -43,37 +42,15 @@ export default function Header() {
   }, [highlightIndex]);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
   }, [menuOpen]);
 
-  const solid = scrolled || menuOpen;
-
   return (
     <>
-      <header
-        className={cn(
-          "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
-          solid
-            ? "bg-ivory/95 shadow-[0_1px_0_0_rgba(0,0,0,0.06)] backdrop-blur"
-            : "bg-transparent",
-        )}
-      >
-        {!solid && (
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-charcoal/65 via-charcoal/25 to-transparent"
-          />
-        )}
+      <header className="fixed inset-x-0 top-0 z-50 bg-transparent">
         <div className="container-luxe flex h-20 items-center justify-between sm:h-24">
           <Link href="/" aria-label="Symphony Bali Spa — Home" className="flex items-center">
             <span className="relative h-12 w-14 shrink-0 sm:h-14 sm:w-16">
@@ -91,19 +68,11 @@ export default function Header() {
           <nav
             ref={navContainerRef}
             onMouseLeave={() => setHoverIndex(null)}
-            className={cn(
-              "relative hidden items-center gap-1 rounded-full border p-1.5 text-[0.78rem] font-medium uppercase tracking-[0.08em] transition-colors duration-500 lg:flex",
-              solid
-                ? "border-ink/10 bg-ink/[0.03] text-ink/75"
-                : "border-ivory/15 bg-ivory/5 text-ivory/90 backdrop-blur-sm",
-            )}
+            className="relative hidden items-center gap-1 rounded-full border border-ink/10 bg-ivory/80 p-1.5 text-[0.78rem] font-medium uppercase tracking-[0.08em] text-ink/75 shadow-[0_4px_20px_rgba(0,0,0,0.08)] backdrop-blur-md lg:flex"
           >
             <span
               aria-hidden="true"
-              className={cn(
-                "absolute top-1.5 bottom-1.5 rounded-full transition-[left,width,opacity] duration-300 ease-out",
-                solid ? "bg-gold/15" : "bg-ivory/15",
-              )}
+              className="absolute top-1.5 bottom-1.5 rounded-full bg-gold/15 transition-[left,width,opacity] duration-300 ease-out"
               style={{
                 left: pillStyle.left,
                 width: pillStyle.width,
@@ -143,10 +112,7 @@ export default function Header() {
               aria-label="Open menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen(true)}
-              className={cn(
-                "flex h-10 w-10 items-center justify-center lg:hidden",
-                solid ? "text-ink" : "text-ivory",
-              )}
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 bg-ivory/80 text-ink shadow-[0_4px_20px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden"
             >
               <IconMenu className="h-6 w-6" />
             </button>

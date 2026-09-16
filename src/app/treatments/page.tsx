@@ -17,7 +17,7 @@ export default function TreatmentsPage() {
   return (
     <>
       <Hero
-        image="candlesIncense"
+        image="heroTreatments"
         eyebrow="Treatments & Rituals"
         heading={["THE FULL", "MENU OF CALM."]}
         subtext="Eighteen rituals, organised into simple categories, so it's easy to find exactly what you need."

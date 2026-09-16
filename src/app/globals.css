@@ -17,11 +17,16 @@
 }
 
 @layer base {
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     background: var(--color-ivory);
     color: var(--color-ink);
     font-family: var(--font-body);
     font-weight: 300;
+    overflow-x: hidden;
   }
 
   h1,

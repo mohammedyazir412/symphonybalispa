@@ -6,7 +6,7 @@ import Reveal from "@/components/Reveal";
 import { IconArrowRight } from "@/components/icons";
 
 export default function CTASection({
-  image = "infinityPoolOcean",
+  image = "ctaSpaBed",
   eyebrow = "Your Moment of Serenity",
   heading = "Reserve Your Spa Experience",
   description = "Step away from the noise and give yourself a moment to breathe, restore and reconnect.",

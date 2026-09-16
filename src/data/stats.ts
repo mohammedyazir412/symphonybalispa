@@ -1,7 +1,7 @@
 export const stats = [
-  { value: "10+", label: "Years of Experience" },
-  { value: "15+", label: "Expert Therapists" },
-  { value: "4.8★", label: "Guest Rating on Google" },
-  { value: "2", label: "Locations in Tamil Nadu" },
-  { value: "10K+", label: "Happy Clients" },
+  { numeric: 10, decimals: 0, suffix: "+", label: "Years of Experience" },
+  { numeric: 15, decimals: 0, suffix: "+", label: "Expert Therapists" },
+  { numeric: 4.8, decimals: 1, suffix: "★", label: "Guest Rating on Google" },
+  { numeric: 2, decimals: 0, suffix: "", label: "Locations in Tamil Nadu" },
+  { numeric: 10, decimals: 0, suffix: "K+", label: "Happy Clients" },
 ] as const;

@@ -42,7 +42,7 @@ export default function AboutPage() {
   return (
     <>
       <Hero
-        image="resortPoolPalms"
+        image="heroAbout"
         eyebrow="Our Story"
         heading={["A SANCTUARY", "BUILT ON RITUAL."]}
         subtext="Symphony Bali Spa was founded on a simple belief — that everyone deserves a space to slow down, however brief the visit."

@@ -65,6 +65,7 @@ interface HeroProps {
   watchLabel?: string;
   layout?: "left" | "center-card";
   waveDivider?: boolean;
+  waveFill?: "cream" | "ivory";
   accentLine?: number;
 }
 
@@ -81,6 +82,7 @@ export default function Hero({
   watchLabel,
   layout = "left",
   waveDivider = false,
+  waveFill = "cream",
   accentLine,
 }: HeroProps) {
   const centered = layout === "center-card";
@@ -99,7 +101,7 @@ export default function Hero({
         "relative flex overflow-hidden bg-charcoal text-ivory",
         centered ? "flex-col" : "items-end",
         size === "full"
-          ? "h-[94vh] min-h-[680px] sm:h-screen"
+          ? "min-h-[680px] sm:h-screen"
           : "min-h-[460px] sm:min-h-[520px]",
       )}
     >
@@ -139,7 +141,7 @@ export default function Hero({
         className={cn(
           "container-luxe relative z-10",
           centered
-            ? "flex flex-1 flex-col items-center justify-center overflow-hidden pt-20 text-center sm:pt-24"
+            ? "flex flex-1 flex-col items-center justify-center pt-20 pb-8 text-center sm:pt-24 sm:pb-10"
             : "pb-16 pt-32 sm:pb-20 md:pb-24",
         )}
       >
@@ -269,7 +271,7 @@ export default function Hero({
           >
             <path
               d="M0,40 C360,95 1080,0 1440,45 L1440,100 L0,100 Z"
-              className="fill-cream"
+              className={waveFill === "ivory" ? "fill-ivory" : "fill-cream"}
             />
           </svg>
         </div>

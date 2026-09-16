@@ -38,10 +38,9 @@ export default function HomePage() {
         secondaryCta={{ label: "EXPLORE TREATMENTS", href: "/treatments" }}
         layout="center-card"
         waveDivider
+        waveFill="ivory"
         showScroll
       />
-
-      <Stats />
 
       <AboutSection
         image="aboutExperience"
@@ -54,6 +53,8 @@ export default function HomePage() {
         ]}
         cta={{ label: "DISCOVER OUR STORY", href: "/about" }}
       />
+
+      <Stats />
 
       <section className="bg-cream py-20 sm:py-28">
         <div className="container-luxe">

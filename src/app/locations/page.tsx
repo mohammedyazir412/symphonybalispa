@@ -18,7 +18,7 @@ export default function LocationsPage() {
   return (
     <>
       <Hero
-        image="tropicalBeach"
+        image="heroLocations"
         eyebrow="Find Us"
         heading={["TWO EXQUISITE", "DESTINATIONS."]}
         subtext="Symphony Bali Spa welcomes you in Madurai and Theni — each space designed around the same promise of calm."
