@@ -8,6 +8,7 @@ function unsplash(id: string) {
 }
 
 export const img = {
+  justdialLogo: "/images/justdial-logo.png",
   heroHome: "/images/hero-home.png",
   heroHomeMobile: "/images/hero-home-mobile.png",
   aboutExperience: "/images/about-experience.png",

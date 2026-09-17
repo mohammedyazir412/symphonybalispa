@@ -5,6 +5,7 @@ import { testimonials } from "@/data/testimonials";
 import { IconStar, IconChevronLeft, IconChevronRight } from "@/components/icons";
 import Divider from "@/components/Divider";
 import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
 
 export default function Testimonials() {
   const [index, setIndex] = useState(0);
@@ -41,11 +42,16 @@ export default function Testimonials() {
   const current = testimonials[index];
 
   return (
-    <section className="bg-charcoal py-20 text-ivory sm:py-28">
+    <section className="bg-charcoal pt-4 pb-20 text-ivory sm:pt-6 sm:pb-28">
       <div className="container-luxe">
         <Reveal className="text-center" variant="scale">
           <Divider tone="light" align="center" className="mb-6" />
-          <p className="eyebrow text-champagne">What Our Guests Say</p>
+          <SectionHeading
+            eyebrow="What Our Guests Say"
+            heading="Our Testimonial"
+            align="center"
+            tone="light"
+          />
         </Reveal>
 
         <div

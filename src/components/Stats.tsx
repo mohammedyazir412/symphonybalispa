@@ -36,7 +36,9 @@ export default function Stats() {
           return (
             <div
               key={stat.label}
-              className="flex flex-col items-center gap-4 px-4 text-center lg:border-l lg:border-ivory/15 lg:first:border-l-0"
+              className={`flex flex-col items-center gap-4 px-4 text-center lg:border-l lg:border-ivory/15 lg:first:border-l-0 ${
+                i === stats.length - 1 ? "col-span-2 sm:col-span-1" : ""
+              }`}
             >
               <span className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 bg-ivory/5 backdrop-blur-sm">
                 <Icon className="h-6 w-6 text-gold" />

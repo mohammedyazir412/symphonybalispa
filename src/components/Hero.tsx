@@ -134,8 +134,8 @@ export default function Hero({
           className="object-cover"
         />
       )}
-      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/45 to-charcoal/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-charcoal/40 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/70 to-charcoal/45" />
+      <div className="absolute inset-0 bg-gradient-to-r from-charcoal/60 via-transparent to-transparent" />
 
       <div
         className={cn(
@@ -145,26 +145,13 @@ export default function Hero({
             : "pb-16 pt-32 sm:pb-20 md:pb-24",
         )}
       >
-        {centered && (
-          <svg width="0" height="0" className="absolute" aria-hidden="true">
-            <defs>
-              <clipPath id="hero-card-wave" clipPathUnits="objectBoundingBox">
-                <path d="M0,0 L1,0 L1,0.89 C0.8,0.89 0.7,1 0.5,1 C0.3,1 0.2,0.89 0,0.89 Z" />
-              </clipPath>
-            </defs>
-          </svg>
-        )}
         <div
-          className={cn(
-            centered &&
-              "hero-card-in max-w-full shrink border border-ivory/15 bg-ivory/10 px-6 pb-8 pt-7 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-md sm:px-14 sm:pb-11 sm:pt-9",
-          )}
-          style={centered ? { clipPath: "url(#hero-card-wave)" } : undefined}
+          className={cn(centered && "hero-card-in max-w-full shrink px-6 sm:px-14")}
         >
           <p
             className={cn(
               "eyebrow mb-5 text-champagne",
-              centered && "mb-4",
+              centered && "hero-eyebrow-in mb-4 !text-[0.62rem] sm:!text-xs",
             )}
           >
             {eyebrow}
@@ -173,7 +160,7 @@ export default function Hero({
             className={cn(
               "text-balance font-display leading-[1.04]",
               accentLine !== undefined
-                ? "text-[2.1rem] sm:text-5xl md:text-6xl"
+                ? "text-[2.7rem] sm:text-5xl md:text-6xl"
                 : "text-[2.6rem] sm:text-6xl md:text-7xl",
               centered ? "mx-auto max-w-2xl" : "max-w-3xl",
             )}
@@ -209,7 +196,7 @@ export default function Hero({
             <p
               className={cn(
                 "text-balance font-light leading-relaxed tracking-[0.01em] text-ivory/80 text-[0.975rem] sm:text-base",
-                centered ? "mx-auto mt-5 max-w-md" : "mt-6 max-w-md",
+                centered ? "mx-auto mt-8 max-w-xl" : "mt-6 max-w-md",
               )}
             >
               {centered ? (
@@ -278,7 +265,7 @@ export default function Hero({
       )}
 
       {showScroll && (
-        <div className="absolute bottom-8 right-6 z-10 hidden flex-col items-center gap-3 text-ivory/70 sm:right-10 md:flex">
+        <div className="absolute bottom-16 right-6 z-10 hidden flex-col items-center gap-3 text-ivory/70 sm:right-10 md:flex">
           <span className="text-[0.65rem] tracking-[0.3em] [writing-mode:vertical-rl]">
             SCROLL
           </span>

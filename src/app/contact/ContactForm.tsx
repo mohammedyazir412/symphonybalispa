@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import { primaryWhatsapp } from "@/data/site";
+import { useState } from "react";
+import { locationsContact } from "@/data/site";
 import { IconArrowRight, IconWhatsapp } from "@/components/icons";
 
 interface FormState {
@@ -23,15 +23,17 @@ export default function ContactForm() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState<"idle" | "success">("idle");
 
-  const whatsappHref = useMemo(() => {
+  const locations = Object.values(locationsContact);
+
+  const buildWhatsappHref = (loc: (typeof locations)[number]) => {
     const lines = [
       `Hi Symphony Bali Spa,`,
       form.name && `Name: ${form.name}`,
       form.contact && `Contact: ${form.contact}`,
       form.message && `Message: ${form.message}`,
     ].filter(Boolean);
-    return `${primaryWhatsapp}?text=${encodeURIComponent(lines.join("\n"))}`;
-  }, [form]);
+    return `${loc.whatsappHref}?text=${encodeURIComponent(lines.join("\n"))}`;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,18 +51,23 @@ export default function ContactForm() {
         <p className="eyebrow mb-3">Message Received</p>
         <h3 className="font-display text-2xl text-ink">Thank you, {form.name.split(" ")[0]}.</h3>
         <p className="mx-auto mt-4 max-w-sm text-[0.9rem] leading-relaxed text-ink/65">
-          We&apos;ll get back to you shortly. For a faster reply, message us
-          directly on WhatsApp.
+          We&apos;ll get back to you shortly. For a faster reply, message either
+          branch directly on WhatsApp.
         </p>
-        <a
-          href={whatsappHref}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-7 inline-flex items-center gap-2 bg-[#25D366] px-6 py-3 text-[0.75rem] font-semibold tracking-[0.12em] text-white transition-opacity hover:opacity-90"
-        >
-          <IconWhatsapp className="h-4 w-4" />
-          MESSAGE ON WHATSAPP
-        </a>
+        <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          {locations.map((loc) => (
+            <a
+              key={loc.id}
+              href={buildWhatsappHref(loc)}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 bg-[#25D366] px-6 py-3 text-[0.75rem] font-semibold tracking-[0.12em] text-white transition-opacity hover:opacity-90"
+            >
+              <IconWhatsapp className="h-4 w-4" />
+              MESSAGE {loc.name.toUpperCase()} BRANCH
+            </a>
+          ))}
+        </div>
       </div>
     );
   }

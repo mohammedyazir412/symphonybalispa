@@ -8,6 +8,7 @@ import TreatmentGrid from "@/components/TreatmentGrid";
 import AmenitySection from "@/components/AmenitySection";
 import LocationCard from "@/components/LocationCard";
 import Testimonials from "@/components/Testimonials";
+import ReviewBadges from "@/components/ReviewBadges";
 import CTASection from "@/components/CTASection";
 import Reveal from "@/components/Reveal";
 import { getFeaturedTreatments } from "@/data/treatments";
@@ -117,6 +118,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <ReviewBadges />
 
       <Testimonials />
 

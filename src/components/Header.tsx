@@ -30,6 +30,13 @@ export default function Header() {
   const activeIndex = navLinks.findIndex((link) =>
     link.href === "/" ? pathname === "/" : pathname.startsWith(link.href),
   );
+
+  const handleHomeClick = (e: React.MouseEvent) => {
+    if (pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
   const highlightIndex = hoverIndex ?? activeIndex;
 
   useLayoutEffect(() => {
@@ -52,7 +59,12 @@ export default function Header() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 bg-transparent">
         <div className="container-luxe flex h-20 items-center justify-between sm:h-24">
-          <Link href="/" aria-label="Symphony Bali Spa — Home" className="flex items-center">
+          <Link
+            href="/"
+            aria-label="Symphony Bali Spa — Home"
+            className="flex items-center"
+            onClick={handleHomeClick}
+          >
             <span className="relative h-12 w-14 shrink-0 sm:h-14 sm:w-16">
               <Image
                 src="/images/logo.png"
@@ -89,6 +101,7 @@ export default function Header() {
                     linkRefs.current[i] = el;
                   }}
                   onMouseEnter={() => setHoverIndex(i)}
+                  onClick={link.href === "/" ? handleHomeClick : undefined}
                   className={cn(
                     "relative z-10 rounded-full px-4 py-2 transition-colors duration-300",
                     active ? "text-gold" : "hover:text-gold",

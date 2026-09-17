@@ -17,6 +17,13 @@ export default function MobileMenu({
 }) {
   const pathname = usePathname();
 
+  const handleHomeClick = () => {
+    onClose();
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <div
       className={cn(
@@ -30,7 +37,7 @@ export default function MobileMenu({
       aria-label="Site navigation"
     >
       <div className="container-luxe flex h-20 items-center justify-between sm:h-24">
-        <Link href="/" aria-label="Symphony Bali Spa — Home" onClick={onClose}>
+        <Link href="/" aria-label="Symphony Bali Spa — Home" onClick={handleHomeClick}>
           <span className="relative block h-11 w-12">
             <Image
               src="/images/logo.png"
@@ -59,6 +66,7 @@ export default function MobileMenu({
             <Link
               key={link.href}
               href={link.href}
+              onClick={link.href === "/" ? handleHomeClick : undefined}
               className={cn(
                 "border-b border-ivory/10 py-4 font-display text-3xl transition-colors",
                 active ? "text-gold" : "text-ivory hover:text-champagne",

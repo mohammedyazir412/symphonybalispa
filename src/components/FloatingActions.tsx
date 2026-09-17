@@ -82,33 +82,31 @@ export default function FloatingActions() {
 
       {modalMode && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-charcoal/70 p-4 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/60 px-4"
           role="dialog"
           aria-modal="true"
-          aria-label="Choose your branch"
+          aria-labelledby="floating-actions-modal-title"
           onClick={() => setModalMode(null)}
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md rounded-2xl border border-gold/40 bg-charcoal px-6 py-10 shadow-2xl sm:px-10"
+            className="relative w-full max-w-sm border border-gold/40 bg-cream px-7 py-9 text-center"
           >
             <button
               type="button"
               aria-label="Close"
               onClick={() => setModalMode(null)}
-              className="absolute right-5 top-5 flex h-9 w-9 items-center justify-center rounded-full text-ivory/60 transition-colors hover:text-gold"
+              className="absolute right-4 top-4 text-ink/40 transition-colors hover:text-ink"
             >
-              <IconClose className="h-5 w-5" />
+              <IconClose className="h-4 w-4" />
             </button>
 
-            <h3 className="text-balance text-center font-display text-2xl text-gold sm:text-3xl">
-              Choose Your Branch
+            <p className="eyebrow mb-2">One Last Step</p>
+            <h3 id="floating-actions-modal-title" className="font-display text-xl text-ink">
+              Which branch should we {modalMode === "whatsapp" ? "message" : "call"}?
             </h3>
-            <p className="mt-2 text-center text-[0.9rem] text-ivory/60">
-              Select your preferred spa location to continue
-            </p>
 
-            <div className="mt-8 space-y-3">
+            <div className="mt-6 flex flex-col gap-3">
               {locations.map((loc) => (
                 <a
                   key={loc.id}
@@ -116,14 +114,9 @@ export default function FloatingActions() {
                   target={modalMode === "whatsapp" ? "_blank" : undefined}
                   rel={modalMode === "whatsapp" ? "noreferrer" : undefined}
                   onClick={() => setModalMode(null)}
-                  className="flex items-center justify-between rounded-full border border-ivory/15 px-6 py-4 transition-colors hover:border-gold"
+                  className="inline-flex items-center justify-center gap-2 border border-ink/20 px-6 py-3 text-[0.8rem] font-semibold tracking-[0.1em] text-ink transition-colors hover:border-gold hover:bg-ink hover:text-ivory"
                 >
-                  <span className="font-display text-lg text-gold">
-                    {loc.name}
-                  </span>
-                  <span className="text-[0.9rem] text-ivory/70">
-                    {loc.phoneDisplay}
-                  </span>
+                  {loc.name.toUpperCase()}
                 </a>
               ))}
             </div>
