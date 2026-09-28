@@ -1,3 +1,11 @@
+import { redirect } from "next/navigation";
+
+/**
+ * Journal page is commented out and superseded by the Blogs module (/blogs).
+ * Original implementation preserved below for reference.
+ */
+
+/*
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -77,4 +85,9 @@ export default function JournalPage() {
       </section>
     </>
   );
+}
+*/
+
+export default function JournalPage() {
+  redirect("/blogs");
 }

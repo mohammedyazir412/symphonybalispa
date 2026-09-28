@@ -2,8 +2,9 @@ import type { MetadataRoute } from "next";
 import { site } from "@/data/site";
 import { treatments } from "@/data/treatments";
 import { posts } from "@/data/blog";
+import { getAllBlogPostSlugs } from "@/lib/wordpress";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = [
     "",
     "/about",
@@ -12,20 +13,34 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/locations/madurai",
     "/locations/theni",
     "/gallery",
-    "/journal",
+    "/blogs",
+    // "/journal",
     "/contact",
     "/book",
   ];
 
   const treatmentRoutes = treatments.map((t) => `/treatments/${t.slug}`);
-  const postRoutes = posts.map((p) => `/journal/${p.slug}`);
+  // const journalRoutes = posts.map((p) => `/journal/${p.slug}`);
 
-  const routes = [...staticRoutes, ...treatmentRoutes, ...postRoutes];
+  let blogSlugs: string[] = [];
+  try {
+    blogSlugs = await getAllBlogPostSlugs();
+  } catch (err) {
+    console.error("Failed to fetch blog slugs for sitemap:", err);
+  }
+  const blogRoutes = blogSlugs.map((slug) => `/blogs/${slug}`);
+
+  const routes = [
+    ...staticRoutes,
+    ...treatmentRoutes,
+    // ...journalRoutes,
+    ...blogRoutes,
+  ];
 
   return routes.map((route) => ({
     url: `${site.url}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : 0.7,
+    changeFrequency: route === "" ? "weekly" : route.startsWith("/blogs") ? "weekly" : "monthly",
+    priority: route === "" ? 1 : route === "/blogs" ? 0.8 : 0.7,
   }));
 }

@@ -1,3 +1,11 @@
+import { redirect } from "next/navigation";
+
+/**
+ * Journal article page is commented out and superseded by the Blogs module (/blogs/[slug]).
+ * Original implementation preserved below for reference.
+ */
+
+/*
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -135,4 +143,9 @@ export default async function JournalDetailPage({
       <CTASection />
     </>
   );
+}
+*/
+
+export default function JournalDetailPage() {
+  redirect("/blogs");
 }
