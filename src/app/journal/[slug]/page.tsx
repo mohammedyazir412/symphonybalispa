@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { posts } from "@/data/blog";
 
 /**
  * Journal article page is commented out and superseded by the Blogs module (/blogs/[slug]).
@@ -145,6 +146,12 @@ export default async function JournalDetailPage({
   );
 }
 */
+
+export function generateStaticParams() {
+  return posts.map((post) => ({
+    slug: post.slug,
+  }));
+}
 
 export default function JournalDetailPage() {
   redirect("/blogs");

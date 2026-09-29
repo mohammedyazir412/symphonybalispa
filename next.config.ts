@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "export",
+
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -24,31 +27,6 @@ const nextConfig: NextConfig = {
         hostname: "symphonybalispa.com",
       },
     ],
-    formats: ["image/avif", "image/webp"],
-  },
-  async redirects() {
-    return [
-      {
-        source: "/journal",
-        destination: "/blogs",
-        permanent: true,
-      },
-      {
-        source: "/journal/:slug",
-        destination: "/blogs",
-        permanent: true,
-      },
-      {
-        source: "/blog",
-        destination: "/blogs",
-        permanent: true,
-      },
-      {
-        source: "/blog/:slug",
-        destination: "/blogs/:slug",
-        permanent: true,
-      },
-    ];
   },
 };
 
