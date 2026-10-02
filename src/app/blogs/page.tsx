@@ -10,44 +10,64 @@ import JsonLd from "@/components/JsonLd";
 import { site } from "@/data/site";
 import { getBlogPosts, POSTS_PER_PAGE } from "@/lib/wordpress";
 
-export const metadata: Metadata = {
-  title: "Wellness Blog | Symphony Bali Spa – Tips, Treatments & Relaxation",
-  description:
-    "Explore the Symphony Bali Spa blog for expert wellness tips, Bali spa treatment guides, relaxation techniques, and self-care advice for Madurai and Theni.",
-  alternates: {
-    canonical: "/blogs",
-  },
-  openGraph: {
-    title: "Wellness Blog | Symphony Bali Spa",
-    description:
-      "Expert wellness tips, spa treatment guides, and relaxation advice from Symphony Bali Spa — Madurai & Theni.",
-    url: `${site.url}/blogs`,
-    siteName: site.name,
-    locale: "en_IN",
-    type: "website",
-    images: [
-      {
-        url: `${site.url}/images/logo.png`,
-        width: 512,
-        height: 512,
-        alt: "Symphony Bali Spa Logo",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Wellness Blog | Symphony Bali Spa",
-    description:
-      "Expert wellness tips, spa treatment guides, and relaxation advice.",
-    images: [`${site.url}/images/logo.png`],
-  },
-};
+interface BlogsPageProps {
+  searchParams: Promise<{
+    page?: string;
+    paged?: string;
+  }>;
+}
 
-export default async function BlogsPage() {
-  const currentPage = 1;
+export async function generateMetadata({
+  searchParams,
+}: BlogsPageProps): Promise<Metadata> {
+  const resolvedParams = await searchParams;
+  const rawPage = resolvedParams?.page || resolvedParams?.paged || "1";
+  const currentPage = Math.max(1, parseInt(rawPage, 10) || 1);
+
+  const canonicalUrl =
+    currentPage > 1 ? `/blogs?page=${currentPage}` : "/blogs";
+
+  return {
+    title: "Wellness Blog | Symphony Bali Spa – Tips, Treatments & Relaxation",
+    description:
+      "Explore the Symphony Bali Spa blog for expert wellness tips, Bali spa treatment guides, relaxation techniques, and self-care advice for Madurai and Theni.",
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: "Wellness Blog | Symphony Bali Spa",
+      description:
+        "Expert wellness tips, spa treatment guides, and relaxation advice from Symphony Bali Spa — Madurai & Theni.",
+      url: `${site.url}${canonicalUrl}`,
+      siteName: site.name,
+      locale: "en_IN",
+      type: "website",
+      images: [
+        {
+          url: `${site.url}/images/logo.png`,
+          width: 512,
+          height: 512,
+          alt: "Symphony Bali Spa Logo",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Wellness Blog | Symphony Bali Spa",
+      description:
+        "Expert wellness tips, spa treatment guides, and relaxation advice.",
+      images: [`${site.url}/images/logo.png`],
+    },
+  };
+}
+
+export default async function BlogsPage({ searchParams }: BlogsPageProps) {
+  const resolvedParams = await searchParams;
+  const rawPage = resolvedParams?.page || resolvedParams?.paged || "1";
+  const currentPage = Math.max(1, parseInt(rawPage, 10) || 1);
 
   const { posts, totalPages, totalPosts } = await getBlogPosts({
-    page: 1,
+    page: currentPage,
     perPage: POSTS_PER_PAGE,
   });
 
@@ -60,9 +80,9 @@ export default async function BlogsPage() {
       "Expert wellness tips, Bali spa treatment guides, and relaxation advice.",
     publisher: {
       "@type": "LocalBusiness",
-      name: site.name,
-      url: site.url,
-      logo: `${site.url}/images/logo.png`,
+      "name": site.name,
+      "url": site.url,
+      "logo": `${site.url}/images/logo.png`,
     },
   };
 
@@ -78,31 +98,24 @@ export default async function BlogsPage() {
         size="page"
       />
 
-      <section
-        className="bg-ivory py-20 sm:py-28"
-        aria-label="Blog articles"
-      >
+      <section className="bg-ivory py-20 sm:py-28" aria-label="Blog articles">
         <div className="container-luxe">
           <Reveal>
             <Divider className="mb-6" />
-
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
                 <SectionHeading
                   eyebrow="From Symphony"
                   heading="Our Latest Articles"
                 />
-
-                <p className="mt-2 max-w-xl text-[0.95rem] text-ink/65">
-                  Curated guidance from our therapists and wellness
-                  practitioners to help you restore balance in body and mind.
+                <p className="mt-2 text-[0.95rem] text-ink/65 max-w-xl">
+                  Curated guidance from our therapists and wellness practitioners
+                  to help you restore balance in body and mind.
                 </p>
               </div>
-
               {totalPosts > 0 && (
-                <div className="text-[0.8rem] font-medium uppercase tracking-widest text-gold">
-                  Showing Page {currentPage} of {totalPages} ({totalPosts} Total
-                  Articles)
+                <div className="text-[0.8rem] font-medium tracking-widest text-gold uppercase">
+                  Showing Page {currentPage} of {totalPages} ({totalPosts} Total Articles)
                 </div>
               )}
             </div>
@@ -113,10 +126,7 @@ export default async function BlogsPage() {
               <div className="mt-14 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post, i) => (
                   <Reveal key={post.slug} delay={(i % 3) * 90}>
-                    <BlogCard
-                      post={post}
-                      priority={currentPage === 1 && i < 3}
-                    />
+                    <BlogCard post={post} priority={currentPage === 1 && i < 3} />
                   </Reveal>
                 ))}
               </div>
@@ -132,7 +142,6 @@ export default async function BlogsPage() {
               <h3 className="font-display text-2xl text-charcoal">
                 Articles Are Updating
               </h3>
-
               <p className="mt-3 text-[0.95rem] text-ink/70">
                 We couldn&apos;t load articles for this page right now. Please
                 try refreshing or checking back soon.

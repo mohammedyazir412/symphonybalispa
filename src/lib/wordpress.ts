@@ -206,7 +206,9 @@ export async function getBlogPosts(options?: {
     const res = await fetch(url, {
       next: { revalidate: 3600 },
       headers: {
-        "User-Agent": "SymphonyBaliSpa/1.0",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        Accept: "application/json",
       },
     });
 
@@ -248,7 +250,9 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
     const res = await fetch(url, {
       next: { revalidate: 3600 },
       headers: {
-        "User-Agent": "SymphonyBaliSpa/1.0",
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        Accept: "application/json",
       },
     });
 
@@ -288,6 +292,11 @@ export async function getAllBlogPostSlugs(): Promise<string[]> {
   try {
     const res = await fetch(`${WP_API_BASE}/posts?per_page=100&_fields=slug`, {
       next: { revalidate: 3600 },
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        Accept: "application/json",
+      },
     });
     if (!res.ok) return [];
     const data = (await res.json()) as { slug: string }[];

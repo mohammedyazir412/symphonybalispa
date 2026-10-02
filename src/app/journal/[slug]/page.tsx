@@ -1,6 +1,10 @@
 import { redirect } from "next/navigation";
 import { posts } from "@/data/blog";
 
+export function generateStaticParams() {
+  return posts.map((p) => ({ slug: p.slug }));
+}
+
 /**
  * Journal article page is commented out and superseded by the Blogs module (/blogs/[slug]).
  * Original implementation preserved below for reference.
@@ -146,12 +150,6 @@ export default async function JournalDetailPage({
   );
 }
 */
-
-export function generateStaticParams() {
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
-}
 
 export default function JournalDetailPage() {
   redirect("/blogs");

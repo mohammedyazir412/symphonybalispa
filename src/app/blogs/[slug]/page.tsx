@@ -191,52 +191,36 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Main Article Content */}
       <article className="bg-ivory py-16 sm:py-24">
         <div className="container-luxe max-w-3xl">
-          <Reveal>
-            <div className="mb-10 flex items-center justify-between">
-              <Link
-                href="/blogs"
-                className="group inline-flex items-center gap-2 text-[0.78rem] font-semibold tracking-[0.14em] text-ink uppercase transition-colors hover:text-gold"
-              >
-                <span className="transition-transform duration-300 group-hover:-translate-x-1">
-                  ←
-                </span>
-                Back to all articles
-              </Link>
+          <div className="mb-10 flex items-center justify-between">
+            <Link
+              href="/blogs"
+              className="group inline-flex items-center gap-2 text-[0.78rem] font-semibold tracking-[0.14em] text-ink uppercase transition-colors hover:text-gold"
+            >
+              <span className="transition-transform duration-300 group-hover:-translate-x-1">
+                ←
+              </span>
+              Back to all articles
+            </Link>
 
-              <a
-                href={whatsappShareUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-4 py-1.5 text-[0.75rem] font-medium text-ink transition-all hover:border-gold hover:text-gold shadow-sm"
-                aria-label="Share on WhatsApp"
-              >
-                <IconWhatsapp className="h-3.5 w-3.5 text-[#25D366]" />
-                Share
-              </a>
-            </div>
+            <a
+              href={whatsappShareUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 bg-white px-4 py-1.5 text-[0.75rem] font-medium text-ink transition-all hover:border-gold hover:text-gold shadow-sm"
+              aria-label="Share on WhatsApp"
+            >
+              <IconWhatsapp className="h-3.5 w-3.5 text-[#25D366]" />
+              Share
+            </a>
+          </div>
 
-            {/* Featured Image */}
-            {post.imageUrl && (
-              <div className="relative mb-12 aspect-[16/9] w-full overflow-hidden rounded-2xl border border-ink/8 shadow-lg">
-                <Image
-                  src={post.imageUrl}
-                  alt={post.title}
-                  fill
-                  priority
-                  sizes="(min-width: 1024px) 768px, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            )}
+          <Divider className="mb-10" />
 
-            <Divider className="mb-10" />
-
-            {/* Rendered HTML Content */}
-            <div
-              className="blog-prose"
-              dangerouslySetInnerHTML={{ __html: post.content }}
-            />
-          </Reveal>
+          {/* Rendered HTML Content */}
+          <div
+            className="blog-prose"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
 
           {/* Post Footer & Quick Actions */}
           <Reveal delay={100} className="mt-16 border-t border-ink/10 pt-10">
