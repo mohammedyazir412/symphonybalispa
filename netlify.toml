@@ -1,6 +1,31 @@
 [build]
   command = "npm run build"
-  publish = ".next"
+  publish = "out"
 
 [build.environment]
   NODE_VERSION = "22"
+  STATIC_EXPORT = "true"
+
+[[redirects]]
+  from = "/journal"
+  to = "/blogs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/journal/*"
+  to = "/blogs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/blogs/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/*"
+  to = "/blogs/:splat"
+  status = 301
+  force = true
