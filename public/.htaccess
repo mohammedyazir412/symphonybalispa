@@ -1,0 +1,5 @@
+RewriteEngine On
+RewriteRule ^journal/?$ /blogs/ [R=301,L]
+RewriteRule ^journal/.+$ /blogs/ [R=301,L]
+RewriteRule ^blog/?$ /blogs/ [R=301,L]
+RewriteRule ^blog/(.+)$ /blogs/$1 [R=301,L]
