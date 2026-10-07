@@ -31,7 +31,7 @@ export default function HomePage() {
       <Hero
         image="heroHome"
         mobileImage="heroHomeMobile"
-        eyebrow="Luxury Wellness Experience"
+        eyebrow="Luxury Wellness Experience..."
         heading={["STEP INTO", "Symphony."]}
         accentLine={1}
         subtext="Authentic Balinese-inspired wellness rituals designed to help you slow down, release tension and reconnect with yourself."
