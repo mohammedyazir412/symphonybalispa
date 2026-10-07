@@ -1,0 +1,35 @@
+name: Deploy to GoDaddy cPanel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 21 * * *" # nightly rebuild (~2:30 AM IST) to pick up new WordPress posts
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+        env:
+          STATIC_EXPORT: "true"
+
+      - name: Upload via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ secrets.FTP_PROTOCOL || 'ftps' }}
+          local-dir: ./out/
+          server-dir: ${{ secrets.FTP_DIR }}
