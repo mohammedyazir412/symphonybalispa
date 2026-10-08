@@ -15,6 +15,8 @@ export default function Header() {
   const [lastPathname, setLastPathname] = useState(pathname);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [scrolled, setScrolled] = useState(false);
+  const [hiddenOnMobile, setHiddenOnMobile] = useState(false);
+  const lastScrollY = useRef(0);
   const [pillStyle, setPillStyle] = useState<{ left: number; width: number; opacity: number }>({
     left: 0,
     width: 0,
@@ -67,6 +69,17 @@ export default function Header() {
     const onScroll = () => {
       const y = window.scrollY;
       setScrolled((prev) => (prev ? y > 20 : y > 60));
+
+      // Mobile: hide the header while scrolling down, show it on any scroll up.
+      const delta = y - lastScrollY.current;
+      if (y < 40) {
+        setHiddenOnMobile(false);
+      } else if (delta > 6) {
+        setHiddenOnMobile(true);
+      } else if (delta < -6) {
+        setHiddenOnMobile(false);
+      }
+      lastScrollY.current = y;
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -82,7 +95,12 @@ export default function Header() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50 bg-transparent">
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 bg-transparent transition-transform duration-300 ease-out",
+          hiddenOnMobile && !menuOpen && "max-lg:-translate-y-full",
+        )}
+      >
         <div className="container-luxe flex h-20 items-center justify-between sm:h-24">
           <Link
             href="/"
