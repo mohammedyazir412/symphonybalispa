@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import MobileMenu from "@/components/MobileMenu";
 import { IconMenu } from "@/components/icons";
@@ -14,6 +14,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastPathname, setLastPathname] = useState(pathname);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+  const [scrolled, setScrolled] = useState(false);
   const [pillStyle, setPillStyle] = useState<{ left: number; width: number; opacity: number }>({
     left: 0,
     width: 0,
@@ -39,7 +40,7 @@ export default function Header() {
   };
   const highlightIndex = hoverIndex ?? activeIndex;
 
-  useLayoutEffect(() => {
+  const updatePill = useCallback(() => {
     const el = highlightIndex >= 0 ? linkRefs.current[highlightIndex] : null;
     if (!el) {
       setPillStyle((prev) => ({ ...prev, opacity: 0 }));
@@ -47,6 +48,30 @@ export default function Header() {
     }
     setPillStyle({ left: el.offsetLeft, width: el.offsetWidth, opacity: 1 });
   }, [highlightIndex]);
+
+  useLayoutEffect(() => {
+    updatePill();
+  }, [updatePill]);
+
+  // The nav grows/shrinks while the logo and button slide in or out;
+  // keep the highlight pill aligned with the links throughout.
+  useEffect(() => {
+    const nav = navContainerRef.current;
+    if (!nav || typeof ResizeObserver === "undefined") return;
+    const observer = new ResizeObserver(() => updatePill());
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, [updatePill]);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled((prev) => (prev ? y > 20 : y > 60));
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -62,7 +87,12 @@ export default function Header() {
           <Link
             href="/"
             aria-label="Symphony Bali Spa — Home"
-            className="flex items-center"
+            tabIndex={scrolled ? -1 : undefined}
+            className={cn(
+              "flex items-center transition-all duration-500 ease-out",
+              scrolled &&
+                "lg:pointer-events-none lg:translate-x-10 lg:scale-75 lg:opacity-0",
+            )}
             onClick={handleHomeClick}
           >
             <span className="relative h-12 w-14 shrink-0 sm:h-14 sm:w-16">
@@ -91,6 +121,26 @@ export default function Header() {
                 opacity: pillStyle.opacity,
               }}
             />
+            <Link
+              href="/"
+              aria-label="Symphony Bali Spa — Home"
+              tabIndex={scrolled ? undefined : -1}
+              onClick={handleHomeClick}
+              className={cn(
+                "relative z-10 flex shrink-0 items-center overflow-hidden transition-[max-width,opacity,margin] duration-500 ease-out",
+                scrolled ? "ml-1 mr-1 max-w-14 opacity-100" : "-ml-1 max-w-0 opacity-0",
+              )}
+            >
+              <span className="relative block h-9 w-12 shrink-0">
+                <Image
+                  src="/images/logo.png"
+                  alt=""
+                  fill
+                  sizes="48px"
+                  className="object-contain"
+                />
+              </span>
+            </Link>
             {navLinks.map((link, i) => {
               const active = i === activeIndex;
               return (
@@ -111,12 +161,29 @@ export default function Header() {
                 </Link>
               );
             })}
+            <Link
+              href="/book"
+              tabIndex={scrolled ? undefined : -1}
+              className={cn(
+                "relative z-10 shrink-0 overflow-hidden whitespace-nowrap rounded-full bg-gold text-[0.72rem] font-semibold tracking-[0.14em] text-charcoal transition-[max-width,opacity,margin,padding] duration-500 ease-out hover:bg-champagne",
+                scrolled
+                  ? "ml-1 max-w-40 px-5 py-2 opacity-100"
+                  : "-ml-1 max-w-0 px-0 py-2 opacity-0",
+              )}
+            >
+              BOOK NOW
+            </Link>
           </nav>
 
           <div className="flex items-center gap-3 sm:gap-5">
             <Link
               href="/book"
-              className="hidden rounded-full bg-gold px-6 py-2.5 text-[0.72rem] font-semibold tracking-[0.14em] text-charcoal transition-all duration-300 hover:scale-105 hover:bg-champagne hover:shadow-[0_6px_20px_rgba(185,154,98,0.4)] sm:inline-block"
+              tabIndex={scrolled ? -1 : undefined}
+              className={cn(
+                "hidden rounded-full bg-gold px-6 py-2.5 text-[0.72rem] font-semibold tracking-[0.14em] text-charcoal transition-all duration-500 ease-out hover:scale-105 hover:bg-champagne hover:shadow-[0_6px_20px_rgba(185,154,98,0.4)] sm:inline-block",
+                scrolled &&
+                  "lg:pointer-events-none lg:-translate-x-10 lg:scale-75 lg:opacity-0",
+              )}
             >
               BOOK NOW
             </Link>
