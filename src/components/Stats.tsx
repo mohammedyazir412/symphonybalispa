@@ -48,7 +48,7 @@ export default function Stats() {
                   target={stat.numeric}
                   decimals={stat.decimals}
                   suffix={stat.suffix}
-                  className="font-display text-3xl text-ivory sm:text-4xl"
+                  className="font-display text-4xl font-bold text-ivory sm:text-5xl lg:text-6xl"
                 />
                 <p className="eyebrow mt-2 text-champagne">{stat.label}</p>
               </div>
