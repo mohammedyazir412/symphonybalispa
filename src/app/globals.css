@@ -9,8 +9,8 @@
   --color-champagne: #d7c39a;
   --color-ink: #25221d;
 
-  --font-display: var(--font-playfair), "Playfair Display", Georgia, serif;
-  --font-body: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-display: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-body: var(--font-jost), "Jost", system-ui, sans-serif;
   --font-signature: var(--font-script), system-ui, sans-serif;
 
   --breakpoint-xs: 22.5rem;

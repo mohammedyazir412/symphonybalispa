@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -11,6 +12,21 @@ const batangas = localFont({
   src: "../fonts/batangas-bold.otf",
   variable: "--font-script",
   weight: "700",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const jost = Jost({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-jost",
   display: "swap",
 });
 
@@ -62,19 +78,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   };
 
   return (
-    <html lang="en" className={batangas.variable}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="en" className={`${batangas.variable} ${cormorant.variable} ${jost.variable}`}>
       <body className="flex min-h-screen flex-col bg-ivory text-ink antialiased">
         <JsonLd data={organizationLd} />
         <Header />
