@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Script from "next/script";
 import { Cormorant_Garamond, Jost } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
@@ -80,6 +81,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${batangas.variable} ${cormorant.variable} ${jost.variable}`}>
       <body className="flex min-h-screen flex-col bg-ivory text-ink antialiased">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MPPR4KVC9E"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag("js", new Date());
+gtag("config", "G-MPPR4KVC9E");`}
+        </Script>
         <JsonLd data={organizationLd} />
         <Header />
         <main className="flex-1">{children}</main>
