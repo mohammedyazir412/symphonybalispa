@@ -31,7 +31,7 @@ export default function LocationsPage() {
             <Divider className="mb-6" />
             <SectionHeading
               eyebrow="Our Locations"
-              heading="Wherever You Are, Symphony Is Close By"
+              heading="Your Favourite Bali Spa Experience, Closer Than Ever"
             />
           </Reveal>
 
