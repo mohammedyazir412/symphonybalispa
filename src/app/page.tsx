@@ -110,6 +110,7 @@ export default function HomePage() {
               <Reveal
                 key={location.id}
                 delay={i * 100}
+                className="h-full"
                 variant={i % 2 === 0 ? "left" : "right"}
               >
                 <LocationCard location={location} />

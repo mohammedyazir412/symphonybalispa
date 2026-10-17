@@ -37,7 +37,7 @@ export default function LocationsPage() {
 
           <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
             {locationsList.map((location, i) => (
-              <Reveal key={location.id} delay={i * 100}>
+              <Reveal key={location.id} delay={i * 100} className="h-full">
                 <LocationCard location={location} />
               </Reveal>
             ))}

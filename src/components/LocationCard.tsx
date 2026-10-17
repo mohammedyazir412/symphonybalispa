@@ -14,7 +14,7 @@ export default function LocationCard({
   const contact = locationsContact[location.id as LocationId];
 
   return (
-    <div className="group flex flex-col overflow-hidden border border-ink/10 bg-ivory sm:flex-row">
+    <div className="group flex h-full flex-col overflow-hidden border border-ink/10 bg-ivory sm:flex-row">
       <div className="relative aspect-[4/3] w-full overflow-hidden sm:aspect-auto sm:w-2/5">
         <Image
           src={img[location.heroImage]}
