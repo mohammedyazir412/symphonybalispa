@@ -38,40 +38,37 @@ export default function BlogPagination({
   const hasPrev = currentPage > 1;
   const hasNext = currentPage < totalPages;
 
+  const edge =
+    "group inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] transition-colors";
+  const edgeActive = "text-ink hover:text-gold";
+  const edgeDisabled = "cursor-not-allowed text-ink/25";
+
   return (
     <nav
-      className="mt-16 flex items-center justify-center gap-2 sm:gap-2.5"
+      className="mt-16 flex items-center justify-between gap-4 border-t border-ink/10 pt-8 sm:mt-20"
       aria-label="Blog pagination"
     >
-      {/* Prev Button */}
       {hasPrev ? (
         <Link
           href={getPageUrl(currentPage - 1)}
-          className="flex h-10 items-center gap-1.5 rounded-full border border-ink/15 bg-white/80 px-4 text-[0.78rem] font-medium tracking-wider text-ink/80 transition-all hover:border-gold hover:bg-gold hover:text-charcoal shadow-sm"
+          className={`${edge} ${edgeActive}`}
           aria-label="Previous Page"
         >
-          <IconChevronLeft className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">PREV</span>
+          <IconChevronLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" />
+          <span className="hidden sm:inline">Prev</span>
         </Link>
       ) : (
-        <span
-          className="flex h-10 items-center gap-1.5 rounded-full border border-ink/8 bg-ink/3 px-4 text-[0.78rem] font-medium tracking-wider text-ink/30 cursor-not-allowed"
-          aria-disabled="true"
-        >
+        <span className={`${edge} ${edgeDisabled}`} aria-disabled="true">
           <IconChevronLeft className="h-3.5 w-3.5" />
-          <span className="hidden sm:inline">PREV</span>
+          <span className="hidden sm:inline">Prev</span>
         </span>
       )}
 
-      {/* Page Numbers */}
-      <div className="flex items-center gap-1.5">
+      <div className="flex items-center gap-4 sm:gap-7">
         {pages.map((p, idx) => {
           if (p === "...") {
             return (
-              <span
-                key={`dots-${idx}`}
-                className="flex h-10 w-8 items-center justify-center text-gold font-serif"
-              >
+              <span key={`dots-${idx}`} className="text-ink/30">
                 …
               </span>
             );
@@ -83,7 +80,7 @@ export default function BlogPagination({
             <span
               key={p}
               aria-current="page"
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-gold text-[0.82rem] font-semibold text-charcoal shadow-[0_4px_12px_rgba(185,154,98,0.35)]"
+              className="border-b-2 border-gold pb-1 font-display text-2xl font-semibold leading-none text-gold"
             >
               {p}
             </span>
@@ -91,7 +88,7 @@ export default function BlogPagination({
             <Link
               key={p}
               href={getPageUrl(p)}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/15 bg-white/80 text-[0.82rem] font-medium text-ink/80 transition-all hover:border-gold hover:bg-gold/15 hover:text-gold shadow-sm"
+              className="border-b-2 border-transparent pb-1 font-display text-2xl leading-none text-ink/45 transition-colors hover:border-gold/50 hover:text-ink"
             >
               {p}
             </Link>
@@ -99,22 +96,18 @@ export default function BlogPagination({
         })}
       </div>
 
-      {/* Next Button */}
       {hasNext ? (
         <Link
           href={getPageUrl(currentPage + 1)}
-          className="flex h-10 items-center gap-1.5 rounded-full border border-ink/15 bg-white/80 px-4 text-[0.78rem] font-medium tracking-wider text-ink/80 transition-all hover:border-gold hover:bg-gold hover:text-charcoal shadow-sm"
+          className={`${edge} ${edgeActive}`}
           aria-label="Next Page"
         >
-          <span className="hidden sm:inline">NEXT</span>
-          <IconChevronRight className="h-3.5 w-3.5" />
+          <span className="hidden sm:inline">Next</span>
+          <IconChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
         </Link>
       ) : (
-        <span
-          className="flex h-10 items-center gap-1.5 rounded-full border border-ink/8 bg-ink/3 px-4 text-[0.78rem] font-medium tracking-wider text-ink/30 cursor-not-allowed"
-          aria-disabled="true"
-        >
-          <span className="hidden sm:inline">NEXT</span>
+        <span className={`${edge} ${edgeDisabled}`} aria-disabled="true">
+          <span className="hidden sm:inline">Next</span>
           <IconChevronRight className="h-3.5 w-3.5" />
         </span>
       )}
