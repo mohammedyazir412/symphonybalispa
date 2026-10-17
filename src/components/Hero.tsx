@@ -179,7 +179,7 @@ export default function Hero({
                   i === accentLine &&
                     "font-signature text-[1.05em] font-bold leading-[0.85] tracking-[-0.055em] text-gold sm:text-[1.3em]",
                   i === subAccentLine &&
-                    "font-signature mt-1 text-[0.8em] font-bold leading-[0.9] tracking-[-0.045em] text-gold sm:text-[1em]",
+                    "font-signature mt-1 translate-x-5 text-[0.8em] font-bold leading-[0.9] tracking-[-0.045em] text-gold sm:translate-x-8 sm:text-[1em]",
                 );
                 return centered ? (
                   <TypedLine
