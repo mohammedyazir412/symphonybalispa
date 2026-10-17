@@ -47,10 +47,10 @@ export default function HomePage() {
         image="aboutExperience"
         imageAlt="A guest walking toward the treatment rooms through the Symphony Bali Spa gardens"
         eyebrow="The Symphony Experience"
-        heading="More Than a Spa. It's a Journey."
+        heading="Your Destination for Balinese Spa and Wellness"
         paragraphs={[
-          "At Symphony Bali Spa, we bring an authentic Balinese-inspired wellness experience to Madurai and Theni. Every space is designed to help you slow down, and every ritual is performed by therapists trained in traditional technique.",
-          "From premium natural products to a calm, considered ambience, each visit is shaped around one goal — helping you leave feeling genuinely restored, in body and mind.",
+          "At Symphony Bali Spa, we bring the beauty of traditional Balinese wellness practices to Madurai and Theni. Our Bali spa experience combines traditional massage techniques, relaxing spa treatments, and a peaceful setting where you can take a break from your daily routine.",
+          "Every detail, from the calming ambience to the natural products used in our treatments, is chosen with care. Our trained therapists help ease muscle tension, reduce stress, and refresh your body and mind. Whether you visit us for a relaxing Bali massage or a complete spa experience, Symphony Bali Spa offers a welcoming place to unwind and enjoy quality wellness treatments.",
         ]}
         cta={{ label: "DISCOVER OUR STORY", href: "/about" }}
       />
