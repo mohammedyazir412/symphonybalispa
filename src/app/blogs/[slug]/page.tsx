@@ -21,6 +21,11 @@ interface BlogPostPageProps {
   }>;
 }
 
+// Blog bodies are WordPress HTML: make their images lazy-load and decode off-thread.
+function lazyImages(html: string) {
+  return html.replace(/<img(?![^>]*loading=)/gi, '<img loading="lazy" decoding="async"');
+}
+
 export async function generateStaticParams() {
   const slugs = await getAllBlogPostSlugs();
   return slugs.map((slug) => ({ slug }));
@@ -219,7 +224,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {/* Rendered HTML Content */}
           <div
             className="blog-prose"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: lazyImages(post.content) }}
           />
 
           {/* Post Footer & Quick Actions */}

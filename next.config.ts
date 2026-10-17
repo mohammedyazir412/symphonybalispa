@@ -5,7 +5,9 @@ const isStaticExport = process.env.STATIC_EXPORT === "true";
 const nextConfig: NextConfig = {
   ...(isStaticExport ? { output: "export" as const, trailingSlash: true } : {}),
   images: {
-    unoptimized: isStaticExport,
+    ...(isStaticExport
+      ? { loader: "custom" as const, loaderFile: "./src/lib/imageLoader.ts" }
+      : {}),
     remotePatterns: [
       {
         protocol: "https",

@@ -43,3 +43,6 @@ next-env.d.ts
 # build archives
 *.zip
 /out/
+
+# generated image variants
+/public/images/_opt/
