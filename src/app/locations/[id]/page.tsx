@@ -26,6 +26,12 @@ export function generateStaticParams() {
   return ids.map((id) => ({ id }));
 }
 
+function truncate(text: string, max: number) {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max - 1);
+  return `${cut.slice(0, cut.lastIndexOf(" "))}…`;
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -37,7 +43,7 @@ export async function generateMetadata({
 
   return {
     title: `${content.name} Location`,
-    description: content.intro,
+    description: truncate(content.intro, 158),
     alternates: { canonical: `/locations/${content.id}` },
   };
 }

@@ -88,7 +88,7 @@ export default function BlogPagination({
             <Link
               key={p}
               href={getPageUrl(p)}
-              className="border-b-2 border-transparent pb-1 font-display text-2xl leading-none text-ink/45 transition-colors hover:border-gold/50 hover:text-ink"
+              className="border-b-2 border-transparent pb-1 font-display text-2xl leading-none text-ink/65 transition-colors hover:border-gold/50 hover:text-ink"
             >
               {p}
             </Link>
