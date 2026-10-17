@@ -51,7 +51,6 @@ export default async function BlogsIndex({ currentPage }: { currentPage: number 
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
               <div>
                 <SectionHeading
-                  eyebrow="From Symphony"
                   heading="Our Latest Articles"
                 />
                 <p className="mt-2 text-[0.95rem] text-ink/65 max-w-xl">
