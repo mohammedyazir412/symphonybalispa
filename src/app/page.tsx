@@ -31,7 +31,7 @@ export default function HomePage() {
       <Hero
         image="heroHome"
         mobileImage="heroHomeMobile"
-        eyebrow="Luxury Wellness Experience..."
+        eyebrow="Luxury Wellness Experience"
         heading={["STEP INTO", "Symphony", "Bali Spa"]}
         accentLine={1}
         subAccentLine={2}
