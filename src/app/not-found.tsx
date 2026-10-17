@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { img } from "@/lib/images";
-import { IconArrowRight, IconLeaf } from "@/components/icons";
+import { IconArrowRight } from "@/components/icons";
 
 export const metadata: Metadata = {
   title: "Page Not Found",
@@ -105,7 +105,15 @@ export default function NotFound() {
                 />
               ))}
               <span className="relative flex h-full w-full items-center justify-center rounded-full border-2 border-gold/70 bg-gradient-to-b from-gold/20 to-transparent shadow-[0_0_60px_rgba(185,154,98,0.35)]">
-                <IconLeaf className="h-[38%] w-[38%] text-champagne" />
+                <span className="relative block h-[52%] w-[52%]">
+                  <Image
+                    src="/images/logo.png"
+                    alt="Symphony Bali Spa"
+                    fill
+                    sizes="160px"
+                    className="object-contain"
+                  />
+                </span>
               </span>
             </span>
             <span className="nf-gold-text">4</span>
