@@ -28,7 +28,7 @@ export default function LocationCard({
         <div>
           <p className="eyebrow">Luxury Spa</p>
           <h3 className="mt-2 font-display text-2xl text-ink">
-            {location.name}
+            Bali Spa In {location.name}
           </h3>
           <p className="mt-3 text-[0.9rem] leading-relaxed text-ink/65">
             {location.intro}
