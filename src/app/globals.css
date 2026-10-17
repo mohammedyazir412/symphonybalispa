@@ -398,3 +398,94 @@
   background: rgba(185, 154, 98, 0.3);
   margin: 3rem 0;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   404 page animations
+   ───────────────────────────────────────────────────────────── */
+@keyframes nf-ripple {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}
+
+@keyframes nf-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@keyframes nf-rise {
+  0% {
+    transform: translateY(40px) scaleX(1);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-260px) scaleX(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes nf-flicker {
+  0%,
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.55;
+    transform: scale(1.18);
+  }
+}
+
+@keyframes nf-sheen {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.nf-ripple {
+  animation: nf-ripple 5.4s ease-out infinite;
+}
+
+.nf-float {
+  animation: nf-float 7s ease-in-out infinite;
+}
+
+.nf-wisp {
+  animation: nf-rise 9s ease-in infinite;
+}
+
+.nf-flicker {
+  animation: nf-flicker 3.2s ease-in-out infinite;
+}
+
+.nf-gold-text {
+  background: linear-gradient(
+    100deg,
+    #b99a62 0%,
+    #f1deb0 35%,
+    #b99a62 55%,
+    #d7c39a 80%,
+    #b99a62 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: nf-sheen 6s linear infinite;
+}
