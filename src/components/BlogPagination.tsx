@@ -15,7 +15,8 @@ export default function BlogPagination({
   if (totalPages <= 1) return null;
 
   const getPageUrl = (pageNumber: number) => {
-    return pageNumber === 1 ? basePath : `${basePath}/page/${pageNumber}`;
+    const path = pageNumber === 1 ? basePath : `${basePath}/page/${pageNumber}`;
+    return `${path}#articles`;
   };
 
   const pages: (number | "...")[] = [];

@@ -45,7 +45,7 @@ export default async function BlogsIndex({ currentPage }: { currentPage: number 
       />
 
       <section className="bg-ivory py-20 sm:py-28" aria-label="Blog articles">
-        <div className="container-luxe">
+        <div id="articles" className="container-luxe scroll-mt-28">
           <Reveal>
             <Divider className="mb-6" />
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
