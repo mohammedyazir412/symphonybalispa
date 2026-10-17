@@ -32,8 +32,9 @@ export default function HomePage() {
         image="heroHome"
         mobileImage="heroHomeMobile"
         eyebrow="Luxury Wellness Experience..."
-        heading={["STEP INTO", "Symphony Bali Spa"]}
+        heading={["STEP INTO", "Symphony", "Bali Spa"]}
         accentLine={1}
+        subAccentLine={2}
         subtext="Experience authentic Balinese spa treatments and wellness rituals designed to relax your body, relieve stress, ease muscle tension, and restore your mind through traditional massage therapies and rejuvenating spa experiences."
         primaryCta={{ label: "BOOK YOUR EXPERIENCE", href: "/book" }}
         secondaryCta={{ label: "EXPLORE TREATMENTS", href: "/treatments" }}

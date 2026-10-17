@@ -67,6 +67,7 @@ interface HeroProps {
   waveDivider?: boolean;
   waveFill?: "cream" | "ivory";
   accentLine?: number;
+  subAccentLine?: number;
 }
 
 export default function Hero({
@@ -84,6 +85,7 @@ export default function Hero({
   waveDivider = false,
   waveFill = "cream",
   accentLine,
+  subAccentLine,
 }: HeroProps) {
   const centered = layout === "center-card";
 
@@ -175,7 +177,9 @@ export default function Hero({
                 const lineClassName = cn(
                   "block",
                   i === accentLine &&
-                    "font-signature text-[1.3em] font-bold leading-[0.85] tracking-[-0.055em] text-gold",
+                    "font-signature text-[1.05em] font-bold leading-[0.85] tracking-[-0.055em] text-gold sm:text-[1.3em]",
+                  i === subAccentLine &&
+                    "font-signature mt-1 text-[0.8em] font-bold leading-[0.9] tracking-[-0.045em] text-gold sm:text-[1em]",
                 );
                 return centered ? (
                   <TypedLine
