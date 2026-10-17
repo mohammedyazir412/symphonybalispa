@@ -177,13 +177,13 @@ export default function Hero({
                 const lineClassName = cn(
                   "block",
                   i === accentLine &&
-                    "font-signature text-[1.05em] font-bold leading-[0.85] tracking-[-0.055em] text-gold sm:inline! sm:text-[1.3em]",
+                    "font-signature text-[1.2em] font-bold leading-[0.85] tracking-[-0.055em] text-gold sm:inline! sm:text-[1.3em]",
                   subAccentLine !== undefined &&
                     i !== accentLine &&
                     i !== subAccentLine &&
-                    "text-[0.82em] sm:text-[1em]",
+                    "text-[0.7em] sm:text-[1em]",
                   i === subAccentLine &&
-                    "font-signature mt-1 translate-x-6 text-[0.8em] font-bold leading-[0.9] tracking-[-0.045em] text-gold sm:ml-[0.22em] sm:mt-0 sm:inline! sm:translate-x-0 sm:text-[1.3em] sm:leading-[0.85] sm:tracking-[-0.055em]",
+                    "font-signature mt-1 translate-x-6 text-[0.9em] font-bold leading-[0.9] tracking-[-0.045em] text-gold sm:ml-[0.22em] sm:mt-0 sm:inline! sm:translate-x-0 sm:text-[1.3em] sm:leading-[0.85] sm:tracking-[-0.055em]",
                 );
                 return centered ? (
                   <TypedLine
