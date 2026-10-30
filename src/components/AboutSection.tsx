@@ -18,7 +18,7 @@ export default function AboutSection({
 }: {
   image: ImageKey;
   imageAlt: string;
-  eyebrow: string;
+  eyebrow?: string;
   heading: string;
   paragraphs: string[];
   cta?: { label: string; href: string };

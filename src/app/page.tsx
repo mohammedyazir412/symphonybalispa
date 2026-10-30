@@ -17,9 +17,10 @@ import { IconArrowRight } from "@/components/icons";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Symphony Bali Spa | Luxury Bali Spa in Madurai & Theni",
+  title: "Symphony Bali Spa | Balinese Spa & Massage",
   description:
-    "Experience authentic Balinese-inspired wellness, luxury massage treatments and rejuvenating spa experiences at Symphony Bali Spa in Madurai and Theni.",
+    "Symphony is Top Bali Spa for authentic balinese massage, luxury spa treatments, body therapies and relaxing experiences designed for your well being",
+  keywords: ["Best Bali Spa"],
   alternates: { canonical: "/" },
 };
 
@@ -31,12 +32,12 @@ export default function HomePage() {
       <Hero
         image="heroHome"
         mobileImage="heroHomeMobile"
-        eyebrow="Luxury Wellness Experience"
-        heading={["STEP INTO", "Symphony", "Bali Spa"]}
-        accentLine={1}
-        subAccentLine={2}
-        subtext="Experience authentic Balinese spa treatments and wellness rituals designed to relax your body, relieve stress, ease muscle tension, and restore your mind through traditional massage therapies and rejuvenating spa experiences."
-        primaryCta={{ label: "BOOK YOUR EXPERIENCE", href: "/book" }}
+        eyebrow="Get Luxury Spa Experiences From"
+        heading={["Symphony", "Bali Spa"]}
+        accentLine={0}
+        subAccentLine={1}
+        subtext="Enjoy authentic Balinese spa treatments and wellness rituals that relax your body, relieve stress, ease muscle tension, and restore your mind through traditional massage therapies and rejuvenating bali spa services."
+        primaryCta={{ label: "RESERVE YOUR SPA TIME", href: "/book" }}
         secondaryCta={{ label: "EXPLORE TREATMENTS", href: "/treatments" }}
         layout="center-card"
         waveDivider
@@ -47,8 +48,7 @@ export default function HomePage() {
       <AboutSection
         image="aboutExperience"
         imageAlt="A guest walking toward the treatment rooms through the Symphony Bali Spa gardens"
-        eyebrow="The Symphony Experience"
-        heading="Your Destination for Balinese Spa and Wellness"
+        heading="Escape from Stress & Everyday Tension"
         paragraphs={[
           "At Symphony Bali Spa, we bring the beauty of traditional Balinese wellness practices to Madurai and Theni. Our Bali spa experience combines traditional massage techniques, relaxing spa treatments, and a peaceful setting where you can take a break from your daily routine.",
           "Every detail, from the calming ambience to the natural products used in our treatments, is chosen with care. Our trained therapists help ease muscle tension, reduce stress, and refresh your body and mind. Whether you visit us for a relaxing Bali massage or a complete spa experience, Symphony Bali Spa offers a welcoming place to unwind and enjoy quality wellness treatments.",
@@ -63,10 +63,7 @@ export default function HomePage() {
           <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
             <Reveal>
               <Divider className="mb-6" />
-              <SectionHeading
-                eyebrow="Signature Treatments"
-                heading="Choose Your Escape"
-              />
+              <SectionHeading heading="Our Signature Bali Spa Treatments" />
             </Reveal>
             <Reveal delay={100}>
               <Link
@@ -85,7 +82,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <AmenitySection />
+      <AmenitySection
+        eyebrow=""
+        heading="Thoughtfully Symphony Spa Designed for Your Comfort"
+      />
 
       <section className="bg-ivory py-20 sm:py-28">
         <div className="container-luxe">
@@ -125,7 +125,11 @@ export default function HomePage() {
 
       <Testimonials />
 
-      <CTASection />
+      <CTASection
+        eyebrow="Find Your Inner Calm"
+        heading="Schedule Your Spa Treatment"
+        ctaLabel="SCHEDULE YOUR VISIT"
+      />
     </>
   );
 }

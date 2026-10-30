@@ -33,12 +33,12 @@ const jost = Jost({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Symphony Bali Spa | Luxury Bali Spa in Madurai & Theni",
+    default: "Symphony Bali Spa | Balinese Spa & Massage",
     template: "%s | Symphony Bali Spa",
   },
   description: site.description,
   openGraph: {
-    title: "Symphony Bali Spa | Luxury Bali Spa in Madurai & Theni",
+    title: "Symphony Bali Spa | Balinese Spa & Massage",
     description: site.description,
     url: site.url,
     siteName: site.name,
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Symphony Bali Spa | Luxury Bali Spa in Madurai & Theni",
+    title: "Symphony Bali Spa | Balinese Spa & Massage",
     description: site.description,
   },
   robots: {

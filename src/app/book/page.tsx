@@ -22,7 +22,7 @@ export default function BookPage() {
     <>
       <Hero
         image="oilDripMacro"
-        eyebrow="Book Appointment"
+        eyebrow="Symphony Bali Spa"
         heading={["RESERVE YOUR", "SPA TIME."]}
         subtext="Share a few details and our team will confirm your appointment by phone or WhatsApp."
         size="page"

@@ -38,9 +38,8 @@ export default async function BlogsIndex({ currentPage }: { currentPage: number 
 
       <Hero
         image="meditationSilhouette"
-        eyebrow="The Symphony Bali Spa Journal"
+        eyebrow="Symphony Bali Spa"
         heading={["EXPLORE OUR BLOGS ON", "MASSAGE, WELLNESS & SELF-CARE"]}
-        subtext="Welcome to the Symphony Bali Spa Journal. Explore Bali massage, spa treatments, body care, and simple wellness tips for everyday relaxation."
         size="page"
       />
 

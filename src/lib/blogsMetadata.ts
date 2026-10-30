@@ -5,16 +5,19 @@ export function blogsMetadata(currentPage: number): Metadata {
   const canonicalUrl = currentPage > 1 ? `/blogs/page/${currentPage}` : "/blogs";
 
   return {
-    title: "Wellness Blog | Symphony Bali Spa – Tips, Treatments & Relaxation",
+    title: {
+      absolute: "Symphony Bali Spa Blogs | Wellness, Treatments & Relaxation",
+    },
     description:
-      "Explore the Symphony Bali Spa blog for expert wellness tips, Bali spa treatment guides, relaxation techniques, and self-care advice for Madurai and Theni.",
+      "Explore the Symphony Bali Spa insights on Balinese massage, spa treatments, wellness tips, relaxation techniques and simple self-care ideas for routine life.",
+    keywords: ["Symphony Bali Spa Blogs"],
     alternates: {
       canonical: canonicalUrl,
     },
     openGraph: {
-      title: "Wellness Blog | Symphony Bali Spa",
+      title: "Symphony Bali Spa Blogs | Wellness, Treatments & Relaxation",
       description:
-        "Expert wellness tips, spa treatment guides, and relaxation advice from Symphony Bali Spa — Madurai & Theni.",
+        "Explore the Symphony Bali Spa insights on Balinese massage, spa treatments, wellness tips, relaxation techniques and simple self-care ideas for routine life.",
       url: `${site.url}${canonicalUrl}`,
       siteName: site.name,
       locale: "en_IN",
@@ -30,9 +33,9 @@ export function blogsMetadata(currentPage: number): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Wellness Blog | Symphony Bali Spa",
+      title: "Symphony Bali Spa Blogs | Wellness, Treatments & Relaxation",
       description:
-        "Expert wellness tips, spa treatment guides, and relaxation advice.",
+        "Explore the Symphony Bali Spa insights on Balinese massage, spa treatments, wellness tips, relaxation techniques and simple self-care ideas for routine life.",
       images: [`${site.url}/images/logo.png`],
     },
   };

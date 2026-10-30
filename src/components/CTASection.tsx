@@ -10,11 +10,13 @@ export default function CTASection({
   eyebrow = "Your Moment of Serenity",
   heading = "Reserve Your Spa Experience",
   description = "Step away from the noise and give yourself a moment to breathe, restore and reconnect.",
+  ctaLabel = "BOOK YOUR EXPERIENCE",
 }: {
   image?: ImageKey;
   eyebrow?: string;
   heading?: string;
   description?: string;
+  ctaLabel?: string;
 }) {
   return (
     <section className="relative overflow-hidden py-24 text-ivory sm:py-32">
@@ -43,7 +45,7 @@ export default function CTASection({
               href="/book"
               className="inline-flex items-center gap-2 bg-gold px-8 py-3.5 text-[0.75rem] font-semibold tracking-[0.14em] text-charcoal transition-colors hover:bg-champagne"
             >
-              BOOK YOUR EXPERIENCE
+              {ctaLabel}
               <IconArrowRight className="h-4 w-4" />
             </Link>
             <Link

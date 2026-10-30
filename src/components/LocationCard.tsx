@@ -26,8 +26,7 @@ export default function LocationCard({
       </div>
       <div className="flex flex-1 flex-col justify-between p-7 sm:p-8">
         <div>
-          <p className="eyebrow">Luxury Spa</p>
-          <h3 className="mt-2 font-display text-2xl text-ink">
+          <h3 className="font-display text-2xl text-ink">
             Bali Spa In {location.name}
           </h3>
           <p className="mt-3 text-[0.9rem] leading-relaxed text-ink/65">

@@ -55,7 +55,7 @@ function TypedWords({ text, startMs }: { text: string; startMs: number }) {
 interface HeroProps {
   image: ImageKey;
   mobileImage?: ImageKey;
-  eyebrow: string;
+  eyebrow?: string;
   heading: string[];
   subtext?: string;
   primaryCta?: { label: string; href: string };
@@ -150,14 +150,16 @@ export default function Hero({
         <div
           className={cn(centered && "hero-card-in max-w-full shrink px-6 sm:px-14")}
         >
-          <p
-            className={cn(
-              "eyebrow mb-5 text-champagne",
-              centered && "hero-eyebrow-in mb-4 !text-[0.62rem] sm:!text-xs",
-            )}
-          >
-            {eyebrow}
-          </p>
+          {eyebrow && (
+            <p
+              className={cn(
+                "eyebrow mb-5 text-champagne",
+                centered && "hero-eyebrow-in mb-4 !text-[0.62rem] sm:!text-xs",
+              )}
+            >
+              {eyebrow}
+            </p>
+          )}
           <h1
             className={cn(
               "text-balance font-display leading-[1.04]",

@@ -6,12 +6,29 @@ import Reveal from "@/components/Reveal";
 import LocationCard from "@/components/LocationCard";
 import CTASection from "@/components/CTASection";
 import { locationsList } from "@/data/locations";
+import { site } from "@/data/site";
+
+const description =
+  "Find Symphony Bali Spa locations in Tamil Nadu, including Madurai and Theni. Explore spa addresses, contact details and directions to plan your next visit today.";
 
 export const metadata: Metadata = {
-  title: "Locations",
-  description:
-    "Find Symphony Bali Spa in Madurai and Theni, Tamil Nadu — addresses, contact details and directions for both locations.",
+  title: { absolute: "Symphony Bali Spa | Locations & Contact Details" },
+  description,
+  keywords: ["Symphony Bali Spa locations", "Spa near me"],
   alternates: { canonical: "/locations" },
+  openGraph: {
+    title: "Symphony Bali Spa | Locations & Contact Details",
+    description,
+    url: `${site.url}/locations`,
+    siteName: site.name,
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Symphony Bali Spa | Locations & Contact Details",
+    description,
+  },
 };
 
 export default function LocationsPage() {
@@ -19,9 +36,8 @@ export default function LocationsPage() {
     <>
       <Hero
         image="heroLocations"
-        eyebrow="Find Us"
-        heading={["DISCOVER TWO EXCLUSIVE", "BALI SPA LOCATIONS IN", "MADURAI AND THENI"]}
-        subtext="Symphony Bali Spa welcomes you in Madurai and Theni — each space designed around the same promise of calm."
+        heading={["DISCOVER TWO EXCLUSIVE", "BALI SPA IN", "MADURAI AND THENI"]}
+        subtext="Symphony Bali Spa is your destination for soulful relaxation, authentic Balinese-inspired treatments and a little luxury in your everyday life."
         size="page"
       />
 
@@ -29,10 +45,7 @@ export default function LocationsPage() {
         <div className="container-luxe">
           <Reveal>
             <Divider className="mb-6" />
-            <SectionHeading
-              eyebrow="Our Locations"
-              heading="Your Favourite Bali Spa Experience, Closer Than Ever"
-            />
+            <SectionHeading heading="Your Favourite Bali Spa Experience, Closer Than Ever" />
           </Reveal>
 
           <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-2">
@@ -45,7 +58,12 @@ export default function LocationsPage() {
         </div>
       </section>
 
-      <CTASection />
+      <CTASection
+        eyebrow="A Soulful Treatment, Just for You"
+        heading="Reserve Bali Spa Treatment From Symphony"
+        description="Leave your daily worries behind. Enjoy the comfort of a refreshing spa wellness."
+        ctaLabel="SCHEDULE A CONSULTATION"
+      />
     </>
   );
 }

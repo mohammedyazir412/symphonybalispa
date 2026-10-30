@@ -20,8 +20,12 @@ const iconMap: Record<AmenityIcon, typeof IconRoom> = {
 
 export default function AmenitySection({
   image = "villaPlungePool",
+  eyebrow = "Premium Amenities",
+  heading = "Your Private Escape",
 }: {
   image?: ImageKey;
+  eyebrow?: string;
+  heading?: string;
 }) {
   return (
     <section className="relative overflow-hidden bg-charcoal py-20 text-ivory sm:py-28">
@@ -38,8 +42,8 @@ export default function AmenitySection({
         <Reveal variant="down">
           <Divider tone="light" className="mb-6" />
           <SectionHeading
-            eyebrow="Premium Amenities"
-            heading="Your Private Escape"
+            eyebrow={eyebrow}
+            heading={heading}
             description="Step into a world of tranquility with thoughtful facilities designed to complement your wellness journey."
             tone="light"
           />
