@@ -120,7 +120,7 @@ export default function Header() {
                 fill
                 sizes="64px"
                 className="object-contain"
-                priority
+                loading="eager"
               />
             </span>
           </Link>

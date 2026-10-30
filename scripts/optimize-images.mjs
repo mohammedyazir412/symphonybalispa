@@ -7,8 +7,11 @@ import sharp from "sharp";
 
 const SRC_DIR = path.join(process.cwd(), "public", "images");
 const OUT_DIR = path.join(SRC_DIR, "_opt");
-const WIDTHS = [384, 640, 828, 1200, 1920];
+const WIDTHS = [128, 384, 640, 828, 1200, 1920];
 const QUALITY = 72;
+// Hero photos sit under a dark overlay, so lower quality is invisible there
+// and they are the LCP element on most pages.
+const HERO_QUALITY = 50;
 const EXT = new Set([".png", ".jpg", ".jpeg"]);
 
 fs.mkdirSync(OUT_DIR, { recursive: true });
@@ -24,6 +27,7 @@ for (const file of files) {
   const input = path.join(SRC_DIR, file);
   const base = path.basename(file, path.extname(file));
   const srcMtime = fs.statSync(input).mtimeMs;
+  const quality = base.startsWith("hero-") ? HERO_QUALITY : QUALITY;
 
   for (const width of WIDTHS) {
     const out = path.join(OUT_DIR, `${base}-${width}.webp`);
@@ -34,7 +38,7 @@ for (const file of files) {
     await sharp(input)
       .rotate()
       .resize({ width, withoutEnlargement: true })
-      .webp({ quality: QUALITY, effort: 5 })
+      .webp({ quality, effort: 5 })
       .toFile(out);
     made++;
   }

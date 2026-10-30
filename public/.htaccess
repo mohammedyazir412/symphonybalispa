@@ -26,7 +26,7 @@ RewriteRule ^blog/(.+)$ /blogs/$1 [R=301,L]
 # Caching: hashed build files never change; images and fonts change rarely;
 # HTML must revalidate so content edits show up right away.
 <IfModule mod_headers.c>
-  <FilesMatch "\.(webp|avif|png|jpe?g|gif|svg|ico|woff2?)$">
+  <FilesMatch "\.(webp|avif|png|jpe?g|gif|svg|ico|woff2?|otf|ttf)$">
     Header set Cache-Control "public, max-age=2592000"
   </FilesMatch>
   <FilesMatch "\.(js|css)$">

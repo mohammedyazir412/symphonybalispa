@@ -1,7 +1,7 @@
 // Custom next/image loader used for the static export (no image server).
 // Local photos map to pre-built WebP variants (scripts/optimize-images.mjs);
 // Unsplash and WordPress images are resized by their own CDNs.
-const WIDTHS = [384, 640, 828, 1200, 1920];
+const WIDTHS = [128, 384, 640, 828, 1200, 1920];
 const QUALITY = 72;
 
 function nearestWidth(width: number) {

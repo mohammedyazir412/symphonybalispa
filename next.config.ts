@@ -3,6 +3,8 @@ import type { NextConfig } from "next";
 const isStaticExport = process.env.STATIC_EXPORT === "true";
 
 const nextConfig: NextConfig = {
+  // Tailwind CSS is small; inlining it removes a render-blocking request.
+  experimental: { inlineCss: true },
   ...(isStaticExport ? { output: "export" as const, trailingSlash: true } : {}),
   images: {
     ...(isStaticExport

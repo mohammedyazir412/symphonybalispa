@@ -1,4 +1,5 @@
 import Image, { getImageProps } from "next/image";
+import { preload } from "react-dom";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { IconArrowRight, IconPlay } from "@/components/icons";
@@ -64,9 +65,26 @@ function HeroPicture({ mobile, desktop }: { mobile: string; desktop: string }) {
     fetchPriority: "high",
   } as const;
   const {
-    props: { srcSet: desktopSrcSet },
+    props: { srcSet: desktopSrcSet, src: desktopSrc },
   } = getImageProps({ ...common, src: desktop });
   const { props: mobileProps } = getImageProps({ ...common, src: mobile });
+
+  // Preload from <head> so the download starts before CSS and fonts; the
+  // media queries keep each device to the one image it will show.
+  preload(mobileProps.src, {
+    as: "image",
+    fetchPriority: "high",
+    imageSrcSet: mobileProps.srcSet,
+    imageSizes: "100vw",
+    media: "(max-width: 39.99rem)",
+  });
+  preload(desktopSrc, {
+    as: "image",
+    fetchPriority: "high",
+    imageSrcSet: desktopSrcSet,
+    imageSizes: "100vw",
+    media: "(min-width: 40rem)",
+  });
 
   return (
     <picture>
@@ -138,8 +156,7 @@ export default function Hero({
           src={img[image]}
           alt=""
           fill
-          loading="eager"
-          fetchPriority="high"
+          preload
           sizes="100vw"
           className="object-cover"
         />
