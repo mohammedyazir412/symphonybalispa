@@ -81,16 +81,20 @@ export default function Testimonials() {
           >
             <IconChevronLeft className="h-4 w-4" />
           </button>
-          <div className="flex gap-2">
+          <div className="flex">
             {testimonials.map((t, i) => (
               <button
                 key={t.name}
                 aria-label={`Go to testimonial ${i + 1}`}
                 onClick={() => setIndex(i)}
-                className={`h-1.5 w-1.5 rounded-full transition-colors ${
-                  i === index ? "bg-gold" : "bg-ivory/30"
-                }`}
-              />
+                className="flex h-6 w-6 items-center justify-center"
+              >
+                <span
+                  className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                    i === index ? "bg-gold" : "bg-ivory/30"
+                  }`}
+                />
+              </button>
             ))}
           </div>
           <button

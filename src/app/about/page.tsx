@@ -55,7 +55,7 @@ export default function AboutPage() {
         eyebrow="Who We Are"
         heading="Why Choose Symphony Bali Spa"
         paragraphs={[
-          "Experience pure relaxation at Symphony Bali Spa, where relaxation meets true rejuvenation — escape stress, embrace serenity. With over 10+ years of experience in wellness therapies and trusted spa locations in Madurai and Theni, our goal is to help you escape from daily stress and enjoy a peaceful journey of rejuvenation.",
+          "Experience pure relaxation at Symphony Bali Spa, where relaxation meets true rejuvenation — escape stress, embrace serenity. With over 17+ years of experience in wellness therapies and trusted spa locations in Madurai and Theni, our goal is to help you escape from daily stress and enjoy a peaceful journey of rejuvenation.",
           "At Symphony Bali Spa, we stand out as one of the most trusted and top-rated wellness destinations in India because of our commitment to excellence, quality and customer satisfaction — government recognised, ISO certified, and trusted by our guests.",
           "We provide premium wellness treatments including relaxing massages, revitalising body scrubs and therapeutic spa therapies, all performed by skilled professionals in a peaceful and elegant environment. Our spa also features modern facilities such as steam rooms and jacuzzis to enhance your relaxation.",
           "Our therapies do more than relax your body — they improve circulation, ease muscle tension, reduce stress and support natural detoxification for complete mind and body wellness.",

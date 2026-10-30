@@ -8,12 +8,14 @@ export default function CountUp({
   target,
   decimals = 0,
   suffix = "",
+  minDigits = 1,
   duration = 1400,
   className,
 }: {
   target: number;
   decimals?: number;
   suffix?: string;
+  minDigits?: number;
   duration?: number;
   className?: string;
 }) {
@@ -60,7 +62,7 @@ export default function CountUp({
 
   return (
     <span ref={ref} className={className}>
-      {value.toFixed(decimals)}
+      {value.toFixed(decimals).padStart(minDigits, "0")}
       {suffix}
     </span>
   );

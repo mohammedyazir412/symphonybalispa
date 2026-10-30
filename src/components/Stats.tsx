@@ -3,7 +3,7 @@ import { stats } from "@/data/stats";
 import { img } from "@/lib/images";
 import {
   IconExperience,
-  IconTherapist,
+  IconTeam,
   IconGoogle,
   IconLocationPin,
   IconSmiley,
@@ -11,11 +11,11 @@ import {
 import CountUp from "@/components/CountUp";
 
 const icons = [
-  IconExperience,
-  IconTherapist,
-  IconGoogle,
-  IconLocationPin,
   IconSmiley,
+  IconExperience,
+  IconTeam,
+  IconLocationPin,
+  IconGoogle,
 ];
 
 export default function Stats() {
@@ -48,6 +48,7 @@ export default function Stats() {
                   target={stat.numeric}
                   decimals={stat.decimals}
                   suffix={stat.suffix}
+                  minDigits={"minDigits" in stat ? stat.minDigits : undefined}
                   className="font-display text-4xl font-bold text-ivory sm:text-5xl lg:text-6xl"
                 />
                 <p className="eyebrow mt-2 text-champagne">{stat.label}</p>

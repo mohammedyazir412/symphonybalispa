@@ -124,7 +124,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-ivory/10">
-        <div className="container-luxe flex flex-col items-center justify-between gap-4 pb-24 pt-6 text-center text-[0.75rem] text-ivory/45 sm:flex-row sm:py-6 sm:text-left">
+        <div className="container-luxe flex flex-col items-center justify-between gap-4 pb-24 pt-6 text-center text-[0.75rem] text-ivory/60 sm:flex-row sm:py-6 sm:text-left">
           <p>
             © {year} {site.name}. All Rights Reserved.
           </p>

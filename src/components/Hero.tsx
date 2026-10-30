@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { getImageProps } from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { IconArrowRight, IconPlay } from "@/components/icons";
@@ -49,6 +49,30 @@ function TypedWords({ text, startMs }: { text: string; startMs: number }) {
         </span>
       ))}
     </>
+  );
+}
+
+// The hero is always the LCP element, so it loads eagerly at high priority.
+// A <picture> lets phones download only the mobile crop (two <Image>s toggled
+// with CSS would download both).
+function HeroPicture({ mobile, desktop }: { mobile: string; desktop: string }) {
+  const common = {
+    alt: "",
+    fill: true,
+    sizes: "100vw",
+    loading: "eager",
+    fetchPriority: "high",
+  } as const;
+  const {
+    props: { srcSet: desktopSrcSet },
+  } = getImageProps({ ...common, src: desktop });
+  const { props: mobileProps } = getImageProps({ ...common, src: mobile });
+
+  return (
+    <picture>
+      <source media="(min-width: 40rem)" srcSet={desktopSrcSet} sizes="100vw" />
+      <img {...mobileProps} alt="" className="object-cover" />
+    </picture>
   );
 }
 
@@ -108,30 +132,14 @@ export default function Hero({
       )}
     >
       {mobileImage ? (
-        <>
-          <Image
-            src={img[mobileImage]}
-            alt=""
-            fill
-            priority={size === "full"}
-            sizes="100vw"
-            className="object-cover sm:hidden"
-          />
-          <Image
-            src={img[image]}
-            alt=""
-            fill
-            priority={size === "full"}
-            sizes="100vw"
-            className="hidden object-cover sm:block"
-          />
-        </>
+        <HeroPicture mobile={img[mobileImage]} desktop={img[image]} />
       ) : (
         <Image
           src={img[image]}
           alt=""
           fill
-          priority={size === "full"}
+          loading="eager"
+          fetchPriority="high"
           sizes="100vw"
           className="object-cover"
         />
