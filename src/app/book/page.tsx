@@ -9,9 +9,10 @@ import { IconClock, IconMapPin } from "@/components/icons";
 import { locationsContact, site } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Book Appointment",
+  title: { absolute: "Book Your Spa Appointment | Symphony Bali Spa" },
   description:
-    "Reserve your appointment at Symphony Bali Spa — choose your location, treatment and preferred time.",
+    "Reserve your appointment at Symphony Bali Spa. Choose your preferred spa location, massage treatment, date and time for a relaxing wellness experience.",
+  keywords: ["Symphony Bali Spa Appointments"],
   alternates: { canonical: "/book" },
 };
 

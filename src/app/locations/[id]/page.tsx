@@ -41,6 +41,26 @@ export async function generateMetadata({
   const content = locationsContent[id as LocationId];
   if (!content) return {};
 
+  if (content.id === "madurai") {
+    return {
+      title: { absolute: "Bali Spa In Madurai | Symphony" },
+      description:
+        "Visit Symphony Bali Spa in Karpaga Nagar, Madurai, for Balinese massage, body treatments and relaxing spa services. Explore our range of wellness therapies.",
+      keywords: ["Bali Spa in Madurai"],
+      alternates: { canonical: `/locations/${content.id}` },
+    };
+  }
+
+  if (content.id === "theni") {
+    return {
+      title: { absolute: "Bali Spa In Theni | Symphony" },
+      description:
+        "Visit Symphony Bali Spa in Theni, opposite the New Bus Stand, for Balinese massage, Thai massage, aromatherapy and relaxing body treatments.",
+      keywords: ["Bali Spa In Theni"],
+      alternates: { canonical: `/locations/${content.id}` },
+    };
+  }
+
   return {
     title: `${content.name} Location`,
     description: truncate(content.intro, 158),
@@ -67,8 +87,7 @@ export default async function LocationDetailPage({
     <>
       <Hero
         image={content.heroImage}
-        eyebrow={site.name.toUpperCase()}
-        heading={[content.name.toUpperCase()]}
+        heading={["SYMPHONY BALI SPA", `IN ${content.name.toUpperCase()}`]}
         subtext={content.intro}
         primaryCta={{ label: "BOOK APPOINTMENT", href: `/book?location=${content.id}` }}
         secondaryCta={{ label: "GET DIRECTIONS", href: mapSrc.replace("&output=embed", "") }}
@@ -143,7 +162,7 @@ export default async function LocationDetailPage({
         <div className="container-luxe">
           <Reveal>
             <Divider className="mb-6" />
-            <SectionHeading eyebrow="Popular Here" heading="Signature Treatments" />
+            <SectionHeading heading="Our Popular Signature Treatments" />
           </Reveal>
           <div className="mt-12">
             <TreatmentGrid treatments={featured} />
@@ -151,7 +170,7 @@ export default async function LocationDetailPage({
         </div>
       </section>
 
-      <AmenitySection />
+      <AmenitySection eyebrow="" heading="Our Unique Way To Escape From Stress" />
 
       <section className="bg-ivory py-20 sm:py-28">
         <div className="container-luxe">

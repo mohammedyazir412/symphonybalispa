@@ -9,9 +9,10 @@ import CTASection from "@/components/CTASection";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: { absolute: "About Symphony Bali Spa | Our Story & Wellness Traditions" },
   description:
-    "Learn the story behind Symphony Bali Spa — an authentic Balinese-inspired wellness destination with locations in Madurai and Theni.",
+    "Look out for Symphony Bali Spa, our approach to wellness, inspired by Balinese massage traditions, skilled therapists, premium treatments and thoughtful care.",
+  keywords: ["About Symphony Bali Spa"],
   alternates: { canonical: "/about" },
 };
 
@@ -52,13 +53,12 @@ export default function AboutPage() {
       <AboutSection
         image="aboutPageTeam"
         imageAlt="The Symphony Bali Spa therapist team"
-        eyebrow="Who We Are"
-        heading="Why Choose Symphony Bali Spa"
+        heading="Who We Are?"
         paragraphs={[
-          "Experience pure relaxation at Symphony Bali Spa, where relaxation meets true rejuvenation — escape stress, embrace serenity. With over 17+ years of experience in wellness therapies and trusted spa locations in Madurai and Theni, our goal is to help you escape from daily stress and enjoy a peaceful journey of rejuvenation.",
-          "At Symphony Bali Spa, we stand out as one of the most trusted and top-rated wellness destinations in India because of our commitment to excellence, quality and customer satisfaction — government recognised, ISO certified, and trusted by our guests.",
-          "We provide premium wellness treatments including relaxing massages, revitalising body scrubs and therapeutic spa therapies, all performed by skilled professionals in a peaceful and elegant environment. Our spa also features modern facilities such as steam rooms and jacuzzis to enhance your relaxation.",
-          "Our therapies do more than relax your body — they improve circulation, ease muscle tension, reduce stress and support natural detoxification for complete mind and body wellness.",
+          "Symphony Bali Spa is a wellness centre with over 17+ years of experience in spa treatments and massage therapies. We bring the traditional practices of Balinese massage into our treatments, giving customers a place to take a break from their daily routine and spend time on their well-being.",
+          "Over the years, we have built our bali spa reputation through quality treatments, professional service and care for our guests. Symphony Bali Spa is government recognised and ISO certified, reflecting our commitment to maintaining service standards.",
+          "Our spa offers a variety of treatments, including body massages, body scrubs and therapeutic massage therapies. Our trained therapists provide each treatment with care and attention. Guests can also enjoy facilities such as steam rooms and jacuzzis during their visit.",
+          "We believe that taking time for yourself is an important part of everyday life. Our massage treatments help relieve muscle tension, reduce everyday stress and give your body time to rest.",
         ]}
       />
 
@@ -69,8 +69,7 @@ export default function AboutPage() {
           <Reveal className="mx-auto max-w-xl text-center">
             <Divider align="center" className="mb-6" />
             <SectionHeading
-              eyebrow="What Guides Us"
-              heading="Our Approach to Wellness"
+              heading="Why Choose Symphony Bali Spa?"
               align="center"
             />
           </Reveal>
@@ -93,11 +92,12 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <AmenitySection image="saunaInterior" />
+      <AmenitySection image="saunaInterior" eyebrow="" heading="Our Promises" />
 
       <CTASection
         image="tropicalBeach"
-        heading="Come Experience the Difference"
+        eyebrow="Symphony Spa"
+        heading="Give Yourself the Care You Deserve"
         description="Whether it's your first visit or your fiftieth, we'd love to welcome you in."
       />
     </>

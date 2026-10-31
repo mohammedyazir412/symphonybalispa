@@ -7,9 +7,10 @@ import CTASection from "@/components/CTASection";
 import TreatmentsDirectory from "./TreatmentsDirectory";
 
 export const metadata: Metadata = {
-  title: "Treatments",
+  title: { absolute: "Symphony Bali Spa Treatments – Massage & Wellness" },
   description:
-    "Explore the full menu of signature therapies, luxury rituals and spa facilities at Symphony Bali Spa — Balinese massage, hot stone therapy, aromatherapy and more.",
+    "Explore signature spa treatments at Symphony Bali Spa, including Balinese massage, hot stone therapy, aromatherapy and relaxing body care for total relaxation.",
+  keywords: ["Balinese spa treatments"],
   alternates: { canonical: "/treatments" },
 };
 
@@ -18,9 +19,8 @@ export default function TreatmentsPage() {
     <>
       <Hero
         image="heroTreatments"
-        eyebrow="Treatments & Rituals"
-        heading={["THE FULL", "MENU OF CALM."]}
-        subtext="Eighteen rituals, organised into simple categories, so it's easy to find exactly what you need."
+        heading={["SYMPHONY BALI SPA", "TREATMENTS FOR CALM"]}
+        subtext="Explore 18 signature spa treatments, thoughtfully organised into simple categories to help you find the right massage, body therapy or wellness ritual for your relaxation and personal care needs."
         size="page"
       />
 
@@ -29,8 +29,7 @@ export default function TreatmentsPage() {
           <Reveal>
             <Divider className="mb-6" />
             <SectionHeading
-              eyebrow="Signature Treatments"
-              heading="Choose Your Escape"
+              heading="Pick Our Signature Treatments"
               description="Filter by category to explore our full range of massages, rituals and spa facilities."
             />
           </Reveal>
