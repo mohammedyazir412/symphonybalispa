@@ -69,6 +69,34 @@ export const WP_API_BASE =
   "https://public-api.wordpress.com/wp/v2/sites/symphonybalispa-ervhc.wordpress.com";
 export const POSTS_PER_PAGE = 9;
 
+// Don't spoof a browser User-Agent: WordPress.com returns 403 for fake Chrome UAs
+// coming from servers, which made builds see zero blog posts.
+const WP_HEADERS = {
+  "User-Agent": "SymphonyBaliSpaSiteBuilder/1.0",
+  Accept: "application/json",
+};
+
+/**
+ * Fetches from the WordPress API, retrying failed requests with backoff.
+ * The API occasionally errors or rate-limits build servers; without retries a
+ * single failure makes the build think there are zero blog posts.
+ */
+async function fetchWP(url: string, attempts = 4): Promise<Response> {
+  let lastError: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      const res = await fetch(url, { next: { revalidate: 3600 }, headers: WP_HEADERS });
+      if (res.ok) return res;
+      lastError = new Error(`WordPress API ${res.status} ${res.statusText} for ${url}`);
+    } catch (err) {
+      lastError = err;
+    }
+    console.warn(`WordPress fetch attempt ${i + 1}/${attempts} failed:`, lastError);
+    if (i < attempts - 1) await new Promise((r) => setTimeout(r, 2000 * (i + 1)));
+  }
+  throw lastError;
+}
+
 /**
  * Strips HTML tags and unescapes basic HTML entities.
  */
@@ -203,18 +231,7 @@ export async function getBlogPosts(options?: {
   const url = `${WP_API_BASE}/posts?_embed=1&per_page=${perPage}&page=${page}&_fields=id,slug,date,modified,title,excerpt,content,_links,_embedded`;
 
   try {
-    const res = await fetch(url, {
-      next: { revalidate: 3600 },
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        Accept: "application/json",
-      },
-    });
-
-    if (!res.ok) {
-      return { posts: [], totalPages: 1, totalPosts: 0, currentPage: page };
-    }
+    const res = await fetchWP(url);
 
     const totalPages = parseInt(res.headers.get("X-WP-TotalPages") || "1", 10);
     const totalPosts = parseInt(res.headers.get("X-WP-Total") || "0", 10);
@@ -247,16 +264,7 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
   const url = `${WP_API_BASE}/posts?slug=${encodeURIComponent(cleanSlug)}&_embed=1`;
 
   try {
-    const res = await fetch(url, {
-      next: { revalidate: 3600 },
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        Accept: "application/json",
-      },
-    });
-
-    if (!res.ok) return null;
+    const res = await fetchWP(url);
 
     const data = (await res.json()) as WPRawPost[];
     if (!Array.isArray(data) || data.length === 0) {
@@ -290,15 +298,7 @@ export async function getRecentBlogPosts(
  */
 export async function getAllBlogPostSlugs(): Promise<string[]> {
   try {
-    const res = await fetch(`${WP_API_BASE}/posts?per_page=100&_fields=slug`, {
-      next: { revalidate: 3600 },
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        Accept: "application/json",
-      },
-    });
-    if (!res.ok) return [];
+    const res = await fetchWP(`${WP_API_BASE}/posts?per_page=100&_fields=slug`);
     const data = (await res.json()) as { slug: string }[];
     return Array.isArray(data) ? data.map((item) => item.slug) : [];
   } catch {
