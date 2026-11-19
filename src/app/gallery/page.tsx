@@ -7,9 +7,10 @@ import Gallery, { type GalleryItem } from "@/components/Gallery";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
-  title: "Gallery",
+  title: { absolute: "Symphony Bali Spa Gallery" },
   description:
-    "A look inside Symphony Bali Spa — treatment rooms, rituals and the details that shape the Symphony experience.",
+    "Explore the Symphony Bali Spa gallery featuring relaxing massage therapies, spa interiors, treatment rooms and wellness experiences in Madurai and Theni.",
+  keywords: ["spa gallery"],
   alternates: { canonical: "/gallery" },
 };
 

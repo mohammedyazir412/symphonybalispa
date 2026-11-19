@@ -20,6 +20,24 @@ export function generateStaticParams() {
   return treatments.map((t) => ({ slug: t.slug }));
 }
 
+// Per-treatment SEO overrides. Falls back to the treatment name / short description.
+const treatmentSeo: Record<
+  string,
+  { title?: string; description?: string; keywords?: string[] }
+> = {
+  "balinese-massage": {
+    title: "Traditional Balinese Massage | Symphony Bali Spa",
+    description:
+      "Experience traditional Balinese massage with us to relieve muscle tension, improve relaxation and refresh your body with authentic techniques. Book your thai massage session today.",
+    keywords: ["bali massage"],
+  },
+  "thai-traditional-massage": {
+    title: "Thai Massage Therapy for Complete Deep Relaxation",
+    description:
+      "Enjoy Thai massage therapy with traditional stretching and rhythmic pressure techniques. Ease body tension, improve flexibility and book a spa session today.",
+  },
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -29,9 +47,12 @@ export async function generateMetadata({
   const treatment = getTreatmentBySlug(slug);
   if (!treatment) return {};
 
+  const seo = treatmentSeo[treatment.slug];
+
   return {
-    title: treatment.name,
-    description: treatment.shortDescription,
+    title: seo?.title ? { absolute: seo.title } : treatment.name,
+    description: seo?.description ?? treatment.shortDescription,
+    ...(seo?.keywords && { keywords: seo.keywords }),
     alternates: { canonical: `/treatments/${treatment.slug}` },
   };
 }

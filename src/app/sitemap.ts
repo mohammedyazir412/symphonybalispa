@@ -42,7 +42,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return routes.map((route) => ({
     url: `${site.url}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : route.startsWith("/blogs") ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/blogs" ? 0.8 : 0.7,
+    changeFrequency: "daily",
+    priority: 1.0,
   }));
 }
