@@ -73,9 +73,12 @@ if ($response_headers) {
 <meta name="twitter:image"       content="<?= SITE_URL ?>/images/logo.webp">
 
 <meta name="google-site-verification" content="XAn6fqTgFENBa1mWXGrxx225wGJCmHIsyAm8LaheUew" />
+<!-- Google Tag Manager -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-5D7ZX27B"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-MPPR4KVC9E"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({"gtm.start": new Date().getTime(), event: "gtm.js"});
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-MPPR4KVC9E');
@@ -121,6 +124,7 @@ if ($response_headers) {
 </style>
 </head>
 <body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D7ZX27B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="body">
 
 <header id="main-header">

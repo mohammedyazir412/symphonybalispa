@@ -80,6 +80,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${batangas.variable} ${cormorant.variable} ${jost.variable}`}>
       <head>
+        {/* Google Tag Manager */}
+        <script
+          async
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-5D7ZX27B"
+        />
         {/* Google tag (gtag.js) */}
         <script
           async
@@ -88,6 +93,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({"gtm.start": new Date().getTime(), event: "gtm.js"});
 function gtag(){dataLayer.push(arguments);}
 gtag("js", new Date());
 gtag("config", "G-MPPR4KVC9E");`,
@@ -95,6 +101,14 @@ gtag("config", "G-MPPR4KVC9E");`,
         />
       </head>
       <body className="flex min-h-screen flex-col bg-ivory text-ink antialiased">
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5D7ZX27B"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <JsonLd data={organizationLd} />
         <Header />
         <main className="flex-1">{children}</main>
